@@ -27,12 +27,14 @@ class ClickLike extends Model
      * 判断是否已点赞
      * @param $contentType
      * @param $contentId
+     * @param $clickUid
      * @return array
      */
-    public function isClick($contentType, $contentId)
+    public function isClick($contentType, $contentId, $clickUid)
     {
         $collection = $this->where('content_type', '=', $contentType)
             ->where('content_id', '=', (int)$contentId)
+            ->where('click_uid', '=', (int)$clickUid)
             ->first();
         return empty($collection) ? [] : $collection->toArray();
     }

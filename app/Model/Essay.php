@@ -35,13 +35,13 @@ class Essay extends Model
         $uid = (int)$uid;
         $id = (int)$id;
         if ($id == 0) {
-            return $this->where('uid', '=', $uid)
+            return $this/*->where('uid', '=', $uid)*/
                 ->where('essay_state', '=', 1)
                 ->orderBy('id', $order)
                 ->limit($limit)
                 ->get()->toArray();
         }
-        return $this->where('uid', '=', $uid)
+        return $this/*->where('uid', '=', $uid)*/
             ->where('id', '<', $id)
             ->where('essay_state', '=', 1)
             ->orderBy('id', $order)
