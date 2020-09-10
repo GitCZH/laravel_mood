@@ -49,7 +49,7 @@ class ClickLikeController extends Controller
         $params['click_uid'] = session("user_id", 0);
         $params['ctime'] = time();
         //判断是否已点赞
-        $likeItem = $this->_likeModel->isClick($params['content_type'], $params['content_id']);
+        $likeItem = $this->_likeModel->isClick($params['content_type'], $params['content_id'], session('user_id'));
         if (!empty($likeItem)) {
             $result = ResponseResult::getResponse(ResponseResult::FAIL_DATA_EXISTS, "已点赞", []);
             return response()->json($result);

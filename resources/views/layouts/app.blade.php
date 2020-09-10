@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Home</title>
+    <title>@yield('title')</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -26,7 +26,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">MOOD</a>
+                    <a class="navbar-brand" href="/home">MOOD</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->

@@ -16,7 +16,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8" style="border-right: 1px solid #ffaabb;">
                             <div class="essay_content" style="min-height: 70px">
                                 {{ item.content }}
                             </div>
@@ -24,11 +24,10 @@
                             <div class="essay_time">
                                 <span>发布时间：</span>{{ item.ctime }}
                             </div>
-                            <textarea name="cmt_content" id="" cols="30" rows="10">fff</textarea>
                         </div>
                         <div class="col-md-2">
                             <div class="essay_opt_btn" style="margin: 10px 5px">
-                                <button aria-label="Center Align" class="btn btn-xs" v-bind:data-id="item.id">
+                                <button aria-label="Center Align" class="btn btn-xs" v-bind:data-click="0" v-bind:data-id="item.id" v-on:click="clickCmt($event)">
                                     <span class="glyphicon glyphicon-comment"></span>
                                     评论
                                 </button>
@@ -51,10 +50,48 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!--展示评论-->
+                    <div class="row" v-for="(cmtItem, cmtIndex) in cmt_items">
+                        <!--输出当前内容下的评论-->
+                        <div class="list-group">
+                            <div class="list-group-item" v-if="cmtIndex == item.id">
+                                <div class="row" v-for="eachCmt in cmtItem" style="border-bottom: 1px solid #ffaabb;">
+                                    <div class="col-md-2">
+                                        <b class="text-info" v-if="essay_user_info[eachCmt.cmt_uid]">{{essay_user_info[eachCmt.cmt_uid].name}}</b>
+                                        <b class="text-info" v-else>佚名</b>
+                                        评论
+                                        <b class="text-warning" v-if="essay_user_info[eachCmt.pub_uid]">{{essay_user_info[eachCmt.pub_uid].name}}</b>
+                                        <b class="text-warning" v-else>佚名</b>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="essay_content">
+                                            {{ eachCmt.cmt_content }}
+                                        </div>
+                                        <br>
+                                        <div class="essay_time">
+                                            <span>评论时间：</span>{{ eachCmt.ctime }}
+                                        </div>
+                                    </div>
+                                    <!--记录分页评论的最后一条评论id-->
+                                    <div class="col-md-2" v-bind:data-last-cmt-id="eachCmt.id"></div>
+                                </div>
+                                <div>
+                                    <p>
+                                        <a href="#">查看更多</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row hide" v-bind:id="item.id">
                         <div class="col-md-12">
-                            <textarea name="cmt_content"  cols="30" rows="10"></textarea>
-                            <button class="btn btn-warning">发布</button>
+                            <div>
+                                <textarea class="form-control" name="cmt_content" v-model="cmt_content" cols="30" rows="3" placeholder="评论点啥吧~"></textarea>
+                            </div>
+                            <div style="margin-top: 5px">
+                                <button class="btn btn-warning" v-on:click="publishCmt($event)" v-bind:data-pub-uid="item.uid" v-bind:data-id="item.id">发布</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,15 +113,19 @@
                 essay_likes: {
 
                 },
-                essay_user_info: [],
+                essay_user_info: {},
                 essay_count: 0,
                 essayId: 0,
                 navActive: 'essay',
-                lastEssayId: -1,
-                clickId: 0
+                lastEssayId: 0,
+                clickId: 0,
+                cmt_content: "",
+                cmt_items: {},
+                cmt_first: 0
             }
         },
         methods:{
+            //获取首页短文列表
             getEssayList: function () {
                 var vueThis = this
                 var url = "/mood/short/getEssayPage"
@@ -103,7 +144,8 @@
                         }
                         // console.log(res)
                         vueThis.essay_items = res.result.list
-                        vueThis.essay_user_info = vueThis.obj2arr(res.result.userInfo)
+                        // vueThis.essay_user_info = vueThis.obj2arr(res.result.userInfo)
+                        vueThis.essay_user_info = res.result.userInfo
                         vueThis.essay_ids = res.result.essayIds
 
                         //取最后一个元素的id
@@ -112,6 +154,11 @@
 
                         //获取点赞数据
                         vueThis.getLikes()
+                        //获取评论数据
+                        res.result.list.forEach(function (val, index) {
+                            vueThis.getEssayCmt(val.id, 0)
+                            vueThis.cmt_first = 1
+                        })
                         // console.log(vueThis.essay_items)
                         // console.log(vueThis.essay_user_info)
                     }
@@ -125,6 +172,7 @@
                }
                 return res
             },
+            //滚动获取短文列表
             scroll: function () {
                 // 缓存指针
                 let _this = this;
@@ -170,6 +218,7 @@
                         if(sw==true){
                             // 将开关关闭
                             sw = false;
+                            // _this.getEssayList()
                             console.log(_this.lastEssayId)
                             var url = "/mood/short/getEssayPage?essayId=" + _this.lastEssayId
                             axios.get(url)
@@ -185,7 +234,7 @@
                                     var userInfo = response.data.result.userInfo
                                     var tmpEssayIds = response.data.result.essayIds
                                     // console.log(userInfo)
-                                    userInfo = _this.obj2arr(userInfo)
+                                    // userInfo = _this.obj2arr(userInfo)
 
                                     //添加到数组
                                     items.forEach(function (val, index) {
@@ -193,9 +242,12 @@
                                         _this.lastEssayId = val.id
                                     })
 
-                                    userInfo.forEach(function (uVal, uIndex) {
-                                        _this.essay_user_info.push(uVal)
-                                    })
+                                    for(let uidF in userInfo) {
+                                        _this.essay_user_info[uidF] = userInfo[uidF]
+                                    }
+                                    // userInfo.each(function (uVal, uIndex) {
+                                    //     _this.essay_user_info.push(uVal)
+                                    // })
 
                                     tmpEssayIds.forEach(function (iVal, iIndex) {
                                         _this.essay_ids.push(iVal)
@@ -256,7 +308,88 @@
                         if (res.status_code == 0) {
                             //赋值点赞数据
                             vueThis.essay_likes = res.result.likes
-                            console.log(vueThis.essay_likes)
+                        }
+                    }
+                })
+            },
+            clickCmt: function (e) {
+                var curE = e.currentTarget;
+                var essayId = $(curE).attr('data-id')
+                //获取点击状态
+                var curClickState = $(curE).attr('data-click')
+                if (curClickState == 0) {
+                    $(curE).addClass('btn-danger')
+                    $(curE).attr('data-click', 1)
+                    //展示评论插件
+                    $("#"+essayId).removeClass('hide')
+                } else {
+                    $(curE).attr('data-click', 0)
+                    //展示评论插件
+                    $("#"+essayId).addClass('hide')
+                    $(curE).removeClass('btn-danger')
+                }
+            },
+            //发布评论
+            publishCmt: function (e) {
+                var curE = e.currentTarget
+                //essay_id,pub_uid,cmt_uid,cmt_id,content
+                var pubUid = $(curE).attr('data-pub-uid')
+                var essayId = $(curE).attr('data-id')
+
+                var vueThis = this
+                var url = "/mood/short/publishEssayCmt"
+                var data = {
+                    cmt_content: this.cmt_content,
+                    essay_id: essayId,
+                    cmt_id: 0,
+                    pub_uid: pubUid
+                }
+                $.ajax({
+                    url: url,
+                    data: data,
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (res) {
+                        alert(res.status_msg)
+                        if (res.status_code != 0) {
+                            return false
+                        }
+                        //清空cmt_content
+                        vueThis.cmt_content = ""
+                    }
+                })
+            },
+            //获取短文评论接口
+            getEssayCmt: function (essayId, cmtId) {
+                var vueThis = this
+                var url = "/mood/short/getEssayCmtPage"
+                var data = {
+                    essayId: essayId,
+                    cmtId: cmtId
+                }
+
+                $.ajax({
+                    url: url,
+                    data: data,
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (res) {
+                        if (res.status_code == 0) {
+                            //把评论添加到评论对象组
+                            if (essayId in vueThis.cmt_items) {
+                                res.result.list.forEach(function (val, index) {
+                                    //如果已存在短文的评论数据，追加
+                                    vueThis.cmt_items[essayId].push(val)
+                                })
+                            } else {
+                                //不存在，新增
+                                vueThis.cmt_items[essayId] = res.result.list
+                            }
+
+                            //添加用户信息到用户数组
+                            res.result.userInfo.forEach(function (uval, uIndex) {
+                                vueThis.essay_user_info[uval.id] = uval
+                            })
                         }
                     }
                 })

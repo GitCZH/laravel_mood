@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+心情驿站
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
