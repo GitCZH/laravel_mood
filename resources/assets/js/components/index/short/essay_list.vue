@@ -6,7 +6,6 @@
                 <div class="list-group-item" v-for="(item, eIndex) in essay_items">
                     <div class="row">
                         <div class="col-md-2">
-
                             <p class="user_nickname text-danger" v-if="essay_user_info[item.uid]" >
                                 <span class="label label-danger">{{eIndex + 1}}</span>
                                 <b>{{essay_user_info[item.uid].name}}</b>
@@ -25,6 +24,7 @@
                             <div class="essay_time">
                                 <span>发布时间：</span>{{ item.ctime }}
                             </div>
+                            <textarea name="cmt_content" id="" cols="30" rows="10">fff</textarea>
                         </div>
                         <div class="col-md-2">
                             <div class="essay_opt_btn" style="margin: 10px 5px">
@@ -49,6 +49,12 @@
                                     转发
                                 </button>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea name="cmt_content"  cols="30" rows="10"></textarea>
+                            <button class="btn btn-warning">发布</button>
                         </div>
                     </div>
                 </div>
