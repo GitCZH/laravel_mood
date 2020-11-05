@@ -27,7 +27,7 @@ Route::prefix("algorithm_sort")->group(function (){
 });
 //后台管理相关路由
 Route::prefix("/admin")->middleware("mood_admin")->group(function (){
-
+    Route::get("/sendMsg", "Admin\MsgController@sendRegMsg");
 });
 
 //前端心情驿站应用管理相关路由
