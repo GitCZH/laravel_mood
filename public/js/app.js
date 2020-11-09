@@ -106898,6 +106898,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "menu",
@@ -106957,7 +106961,9 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("el-menu-item", [_vm._v("心情驿站")]),
+      _c("el-menu-item", [
+        _c("a", { attrs: { href: "/mood/short/index" } }, [_vm._v("心情驿站")])
+      ]),
       _vm._v(" "),
       _c(
         "el-submenu",
@@ -106965,7 +106971,11 @@ var render = function() {
         [
           _c("template", { slot: "title" }, [_vm._v("杂货铺")]),
           _vm._v(" "),
-          _c("el-menu-item", { attrs: { index: "2-1" } }, [_vm._v("图片站")]),
+          _c("el-menu-item", { attrs: { index: "2-1" } }, [
+            _c("a", { attrs: { href: "/mood/file/img/index" } }, [
+              _vm._v("图片站")
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "el-submenu",
