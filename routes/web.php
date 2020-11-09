@@ -51,6 +51,13 @@ Route::prefix("/mood/short")->middleware("mood_index")->group(function (){
     //获取点赞数据
     Route::get("/getEssayClick", "Index\ClickLikeController@getEssayClick");
 });
-
+Route::prefix("/mood/file")->middleware("mood_index")->group(function (){
+    //上传图片路由
+    Route::get("/img/index", "FileController@uploadImgPage");
+    //保存图片路由
+    Route::post("/img/save", "FileController@saveImg");
+    //获取标题logo
+    Route::get("/img/getNav", "FileController@getNav");
+});
 //面试题目测试
 Route::any("/topic01", "Admin\AlgorithmSortController@topic01");

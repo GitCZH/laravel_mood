@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.boot')
 @section('title')
 心情驿站
 @endsection
