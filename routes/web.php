@@ -45,7 +45,6 @@ Route::prefix("/mood/short")->middleware("mood_index")->group(function (){
 
     //页面路由
     Route::get("/index", "Index\EssayController@essayIndex")->name("essay_index");
-
     //点赞
     Route::get("/addClick", "Index\ClickLikeController@addClick");
     //获取点赞数据
@@ -56,8 +55,12 @@ Route::prefix("/mood/file")->middleware("mood_index")->group(function (){
     Route::get("/img/index", "FileController@uploadImgPage");
     //保存图片路由
     Route::post("/img/save", "FileController@saveImg");
-    //获取标题logo
-    Route::get("/img/getNav", "FileController@getNav");
 });
+//获取表单令牌
+Route::get("/home/getCsrf", "HomeController@getCsrfField");
+//获取标题logo
+Route::get("/img/getNav", "FileController@getNav");
+//获取登录状态
+Route::get("/home/getLoginStatus", "HomeController@getLoginStatus");
 //面试题目测试
 Route::any("/topic01", "Admin\AlgorithmSortController@topic01");

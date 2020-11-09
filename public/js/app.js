@@ -106902,6 +106902,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "menu",
@@ -106909,7 +106930,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             activeIndex: '1',
             activeIndex2: '1',
-            navImg: ""
+            navImg: "",
+            isLogin: false,
+            nickname: "hello",
+            csrfField: ""
         };
     },
 
@@ -106920,7 +106944,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getHeaderImg: function getHeaderImg() {
             var that = this;
             $.ajax({
-                url: "/mood/file/img/getNav",
+                url: "/img/getNav",
                 method: 'GET',
                 data: {},
                 dataType: "json",
@@ -106930,10 +106954,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }
             });
+        },
+        getLoginStatus: function getLoginStatus() {
+            var that = this;
+            // that.isLogin = true
+            $.ajax({
+                url: "/home/getLoginStatus",
+                data: {},
+                dataType: 'json',
+                type: "GET",
+                success: function success(res) {
+                    if (res.error_code == 0) {
+                        if (res.result.login == 1) {
+                            that.isLogin = true;
+                            that.nickname = res.result.nickname;
+                        }
+                    }
+                }
+            });
+        },
+        getCsrfField: function getCsrfField() {
+            var that = this;
+            $.ajax({
+                url: "/home/getCsrf",
+                method: "GET",
+                data: {},
+                dataType: "json",
+                success: function success(res) {
+                    if (res.error_code == 0) {
+                        that.csrfField = res.result;
+                    }
+                }
+            });
         }
     },
     created: function created() {
         this.getHeaderImg();
+        this.getLoginStatus();
+        this.getCsrfField();
     }
 });
 
@@ -106961,17 +107019,17 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("el-menu-item", [
+      _c("el-menu-item", { attrs: { index: "3" } }, [
         _c("a", { attrs: { href: "/mood/short/index" } }, [_vm._v("心情驿站")])
       ]),
       _vm._v(" "),
       _c(
         "el-submenu",
-        { attrs: { index: "3" } },
+        { attrs: { index: "4" } },
         [
           _c("template", { slot: "title" }, [_vm._v("杂货铺")]),
           _vm._v(" "),
-          _c("el-menu-item", { attrs: { index: "2-1" } }, [
+          _c("el-menu-item", { attrs: { index: "4-1" } }, [
             _c("a", { attrs: { href: "/mood/file/img/index" } }, [
               _vm._v("图片站")
             ])
@@ -106979,11 +107037,11 @@ var render = function() {
           _vm._v(" "),
           _c(
             "el-submenu",
-            { attrs: { index: "2-4" } },
+            { attrs: { index: "4-2" } },
             [
               _c("template", { slot: "title" }, [_vm._v("选项4")]),
               _vm._v(" "),
-              _c("el-menu-item", { attrs: { index: "2-4-1" } }, [
+              _c("el-menu-item", { attrs: { index: "4-2-1" } }, [
                 _vm._v("选项1")
               ])
             ],
@@ -106993,11 +107051,68 @@ var render = function() {
         2
       ),
       _vm._v(" "),
-      _c("el-menu-item", { attrs: { index: "4" } }, [
-        _c("a", { attrs: { href: "https://www.ele.me", target: "_blank" } }, [
-          _vm._v("订单管理")
-        ])
-      ])
+      _vm.isLogin
+        ? _c(
+            "el-submenu",
+            { attrs: { index: "5" } },
+            [
+              _c("template", { slot: "title" }, [_vm._v(_vm._s(_vm.nickname))]),
+              _vm._v(" "),
+              _c("el-menu-item", [
+                _c("a", { attrs: { href: "" } }, [_vm._v("个人信息")])
+              ]),
+              _vm._v(" "),
+              _c("el-menu-item", [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "/logout",
+                      onclick:
+                        "event.preventDefault();\n                                                 document.getElementById('logout-form').submit();"
+                    }
+                  },
+                  [_vm._v("退出")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "form",
+                  {
+                    staticStyle: { display: "none" },
+                    attrs: {
+                      id: "logout-form",
+                      action: "/logout",
+                      method: "POST"
+                    }
+                  },
+                  [
+                    _c("input", {
+                      staticStyle: { display: "none" },
+                      attrs: { type: "hidden", name: "_token" },
+                      domProps: { value: _vm.csrfField }
+                    })
+                  ]
+                )
+              ])
+            ],
+            2
+          )
+        : _c(
+            "el-submenu",
+            { attrs: { index: "5" } },
+            [
+              _c("template", { slot: "title" }, [_vm._v("点击加入")]),
+              _vm._v(" "),
+              _c("el-menu-item", [
+                _c("a", { attrs: { href: "/login" } }, [_vm._v("登录")])
+              ]),
+              _vm._v(" "),
+              _c("el-menu-item", [
+                _c("a", { attrs: { href: "/register" } }, [_vm._v("注册")])
+              ])
+            ],
+            2
+          )
     ],
     1
   )
