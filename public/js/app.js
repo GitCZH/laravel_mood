@@ -108975,7 +108975,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -108999,12 +108999,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "upload_img_temp.vue",
     data: function data() {
         return {
-            fileList: [{ name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }, { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }]
+            fileList: [{ name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }, { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }],
+            postData: {}
         };
     },
 
@@ -109014,7 +109017,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         handlePreview: function handlePreview(file) {
             console.log(file);
+        },
+        getCsrfField: function getCsrfField() {
+            var that = this;
+            $.ajax({
+                url: "/home/getCsrf",
+                method: "GET",
+                data: {},
+                dataType: "json",
+                success: function success(res) {
+                    if (res.error_code == 0) {
+                        that.postData._token = res.result;
+                    }
+                }
+            });
         }
+    },
+    created: function created() {
+        this.getCsrfField();
     }
 });
 
@@ -109035,6 +109055,8 @@ var render = function() {
         "on-preview": _vm.handlePreview,
         "on-remove": _vm.handleRemove,
         "file-list": _vm.fileList,
+        multiple: "true",
+        data: _vm.postData,
         "list-type": "picture"
       }
     },

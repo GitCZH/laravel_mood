@@ -17,7 +17,7 @@ class FileController extends Controller
 
     public function saveImg(Request $request)
     {
-
+        dump($request->file());
     }
 
     public function getNav()
