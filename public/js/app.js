@@ -108975,7 +108975,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -109001,22 +109001,170 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "upload_img_temp.vue",
     data: function data() {
         return {
-            fileList: [{ name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }, { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }],
-            postData: {}
+            activeName: {},
+            fileList: [],
+            postData: {},
+            uploadData: {
+                fileUrl: ""
+            },
+            uploadForm: {
+                formMark: 0,
+                fileType: 0
+            },
+            rules: {
+                title: [{ required: true, message: '请输入文件名称', trigger: 'blur' }, { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }],
+                desc: [{ required: true, message: '请文件描述', trigger: 'change' }],
+                type: [{ required: true, message: '请选择文件类型', trigger: 'change' }]
+            }
         };
     },
 
     methods: {
+        handleClick: function handleClick(tab, event) {
+            // console.log(tab.name);
+            switch (tab.name) {
+                case "img":
+                    this.uploadForm.fileType = 1;
+                    this.postData.fileType = 1;
+                    break;
+                case "doc":
+                    this.uploadForm.fileType = 2;
+                    this.postData.fileType = 2;
+                    break;
+                case "voice":
+                    this.uploadForm.fileType = 3;
+                    this.postData.fileType = 3;
+                    break;
+                case "video":
+                    this.uploadForm.fileType = 4;
+                    this.postData.fileType = 4;
+                    break;
+                default:
+            }
+        },
         handleRemove: function handleRemove(file, fileList) {
             console.log(file, fileList);
         },
         handlePreview: function handlePreview(file) {
             console.log(file);
+        },
+        beforeRemove: function beforeRemove(file, fileList) {
+            return this.$confirm("\u786E\u5B9A\u79FB\u9664 " + file.name + "\uFF1F");
+        },
+        handleExceed: function handleExceed(files, fileList) {
+            this.$message.warning("\u5F53\u524D\u9650\u5236\u9009\u62E9 3 \u4E2A\u6587\u4EF6\uFF0C\u672C\u6B21\u9009\u62E9\u4E86 " + files.length + " \u4E2A\u6587\u4EF6\uFF0C\u5171\u9009\u62E9\u4E86 " + (files.length + fileList.length) + " \u4E2A\u6587\u4EF6");
+        },
+
+        //封面上传成功
+        uploadSuccessCover: function uploadSuccessCover(response, file, fileList) {
+            console.log(response);
+            if (response.status_code != 0) {
+                this.$message.error('封面文件上传失败，请稍后再试');
+            } else {
+                this.$message({
+                    message: '封面文件上传成功',
+                    type: 'success'
+                });
+            }
+        },
+
+        //文件上传成功
+        uploadSuccessFile: function uploadSuccessFile(response, file, fileList) {
+            console.log(response);
+            if (response.status_code == 0) {
+                this.uploadForm.file_url = response.result.src;
+                this.$message({
+                    message: '文件上传成功',
+                    type: 'success'
+                });
+            } else {
+                this.$message.error('文件上传失败，请稍后再试');
+            }
         },
         getCsrfField: function getCsrfField() {
             var that = this;
@@ -109031,6 +109179,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }
             });
+        },
+        generateFormMark: function generateFormMark() {},
+        submitForm: function submitForm(formName) {
+            this.$refs[formName].validate(function (valid) {
+                if (valid) {
+                    alert('submit!');
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
+            });
+        },
+        resetForm: function resetForm(formName) {
+            this.$refs[formName].resetFields();
         }
     },
     created: function created() {
@@ -109047,28 +109209,298 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "el-upload",
+    "el-form",
     {
-      staticClass: "upload-demo",
-      attrs: {
-        action: "/mood/file/img/save",
-        "on-preview": _vm.handlePreview,
-        "on-remove": _vm.handleRemove,
-        "file-list": _vm.fileList,
-        multiple: "true",
-        data: _vm.postData,
-        "list-type": "picture"
-      }
+      ref: "uploadForm",
+      staticClass: "demo-uploadForm",
+      attrs: { model: _vm.uploadForm, rules: _vm.rules, "label-width": "100px" }
     },
     [
-      _c("el-button", { attrs: { size: "small", type: "primary" } }, [
-        _vm._v("点击上传")
-      ]),
+      _c(
+        "el-form-item",
+        { attrs: { label: "文件名称", prop: "title" } },
+        [
+          _c("el-input", {
+            model: {
+              value: _vm.uploadForm.title,
+              callback: function($$v) {
+                _vm.$set(_vm.uploadForm, "title", $$v)
+              },
+              expression: "uploadForm.title"
+            }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
-        "div",
-        { staticClass: "el-upload__tip", attrs: { slot: "tip" }, slot: "tip" },
-        [_vm._v("只能上传jpg/png文件，且不超过500kb")]
+        "el-form-item",
+        { attrs: { label: "文件描述", prop: "desc" } },
+        [
+          _c("el-input", {
+            model: {
+              value: _vm.uploadForm.desc,
+              callback: function($$v) {
+                _vm.$set(_vm.uploadForm, "desc", $$v)
+              },
+              expression: "uploadForm.desc"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-upload",
+        {
+          staticClass: "upload-demo",
+          attrs: {
+            action: "/mood/file/img/save",
+            "on-preview": _vm.handlePreview,
+            "on-remove": _vm.handleRemove,
+            "file-list": _vm.fileList,
+            data: _vm.postData,
+            "on-success": _vm.uploadSuccessCover,
+            "list-type": "picture"
+          }
+        },
+        [
+          _c("el-button", { attrs: { size: "small", type: "primary" } }, [
+            _vm._v("上传封面")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "el-upload__tip",
+              attrs: { slot: "tip" },
+              slot: "tip"
+            },
+            [_vm._v("只能上传jpg/png/gif文件，且不超过5M")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-tabs",
+        {
+          attrs: { type: "border-card" },
+          on: { "tab-click": _vm.handleClick }
+        },
+        [
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "上传图片", name: "img" } },
+            [
+              _c(
+                "el-upload",
+                {
+                  staticClass: "upload-demo",
+                  attrs: {
+                    action: "/mood/file/img/save",
+                    "on-preview": _vm.handlePreview,
+                    "on-remove": _vm.handleRemove,
+                    "file-list": _vm.fileList,
+                    multiple: true,
+                    data: _vm.postData,
+                    limit: 9,
+                    "on-success": _vm.uploadSuccessFile,
+                    "list-type": "picture"
+                  }
+                },
+                [
+                  _c(
+                    "el-button",
+                    { attrs: { size: "small", type: "primary" } },
+                    [_vm._v("点击上传")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "el-upload__tip",
+                      attrs: { slot: "tip" },
+                      slot: "tip"
+                    },
+                    [_vm._v("图片最大5M，文档最大10M，音频最大10M，视频最大")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "上传文档", name: "doc" } },
+            [
+              _c(
+                "el-upload",
+                {
+                  staticClass: "upload-demo",
+                  attrs: {
+                    action: "/mood/file/img/save",
+                    "on-preview": _vm.handlePreview,
+                    "on-remove": _vm.handleRemove,
+                    "before-remove": _vm.beforeRemove,
+                    multiple: "",
+                    limit: 3,
+                    data: _vm.postData,
+                    "on-exceed": _vm.handleExceed,
+                    "file-list": _vm.fileList
+                  }
+                },
+                [
+                  _c(
+                    "el-button",
+                    { attrs: { size: "small", type: "primary" } },
+                    [_vm._v("点击上传")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "el-upload__tip",
+                      attrs: { slot: "tip" },
+                      slot: "tip"
+                    },
+                    [_vm._v("只支持上传doc,xlxs,csv,ppt,txt,md，最大支持10M")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "上传音频", name: "voice" } },
+            [
+              _c(
+                "el-upload",
+                {
+                  staticClass: "upload-demo",
+                  attrs: {
+                    action: "/mood/file/img/save",
+                    "on-preview": _vm.handlePreview,
+                    "on-remove": _vm.handleRemove,
+                    "before-remove": _vm.beforeRemove,
+                    multiple: "",
+                    limit: 3,
+                    data: _vm.postData,
+                    "on-exceed": _vm.handleExceed,
+                    "file-list": _vm.fileList
+                  }
+                },
+                [
+                  _c(
+                    "el-button",
+                    { attrs: { size: "small", type: "primary" } },
+                    [_vm._v("点击上传")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "el-upload__tip",
+                      attrs: { slot: "tip" },
+                      slot: "tip"
+                    },
+                    [
+                      _vm._v(
+                        "只支持上传mp3，wav，wave，wma，flac，ape，最大支持50M"
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "上传视频", name: "video" } },
+            [
+              _c(
+                "el-upload",
+                {
+                  staticClass: "upload-demo",
+                  attrs: {
+                    action: "/mood/file/img/save",
+                    "on-preview": _vm.handlePreview,
+                    "on-remove": _vm.handleRemove,
+                    "before-remove": _vm.beforeRemove,
+                    multiple: "",
+                    limit: 3,
+                    data: _vm.postData,
+                    "on-exceed": _vm.handleExceed,
+                    "file-list": _vm.fileList
+                  }
+                },
+                [
+                  _c(
+                    "el-button",
+                    { attrs: { size: "small", type: "primary" } },
+                    [_vm._v("点击上传")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "el-upload__tip",
+                      attrs: { slot: "tip" },
+                      slot: "tip"
+                    },
+                    [
+                      _vm._v(
+                        "只支持上传mpeg，avi，mov，asf，nAvi，最大支持200M"
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-form-item",
+        [
+          _c(
+            "el-button",
+            {
+              attrs: { type: "primary" },
+              on: {
+                click: function($event) {
+                  return _vm.submitForm("uploadForm")
+                }
+              }
+            },
+            [_vm._v("立即创建")]
+          ),
+          _vm._v(" "),
+          _c(
+            "el-button",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.resetForm("uploadForm")
+                }
+              }
+            },
+            [_vm._v("重置")]
+          )
+        ],
+        1
       )
     ],
     1

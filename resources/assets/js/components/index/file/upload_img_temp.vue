@@ -1,16 +1,96 @@
 <template>
-    <el-upload
-            class="upload-demo"
-            action="/mood/file/img/save"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :file-list="fileList"
-            multiple="true"
-            :data="postData"
-            list-type="picture">
-        <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-    </el-upload>
+    <el-form :model="uploadForm" :rules="rules" ref="uploadForm" label-width="100px" class="demo-uploadForm">
+        <el-form-item label="文件名称" prop="title">
+            <el-input v-model="uploadForm.title"></el-input>
+        </el-form-item>
+        <el-form-item label="文件描述" prop="desc">
+            <el-input v-model="uploadForm.desc"></el-input>
+        </el-form-item>
+        <el-upload
+                class="upload-demo"
+                action="/mood/file/img/save"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :file-list="fileList"
+                :data="postData"
+                :on-success="uploadSuccessCover"
+                list-type="picture">
+            <el-button size="small" type="primary">上传封面</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传jpg/png/gif文件，且不超过5M</div>
+        </el-upload>
+        <el-tabs @tab-click="handleClick"  type="border-card">
+            <el-tab-pane label="上传图片" name="img">
+                <el-upload
+                        class="upload-demo"
+                        action="/mood/file/img/save"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :file-list="fileList"
+                        :multiple=true
+                        :data="postData"
+                        :limit="9"
+                        :on-success="uploadSuccessFile"
+                        list-type="picture">
+                    <el-button size="small" type="primary">点击上传</el-button>
+                    <div slot="tip" class="el-upload__tip">图片最大5M，文档最大10M，音频最大10M，视频最大</div>
+                </el-upload>
+            </el-tab-pane>
+            <el-tab-pane label="上传文档" name="doc">
+                <el-upload
+                        class="upload-demo"
+                        action="/mood/file/img/save"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :before-remove="beforeRemove"
+                        multiple
+                        :limit="3"
+                        :data="postData"
+                        :on-exceed="handleExceed"
+                        :file-list="fileList">
+                    <el-button size="small" type="primary">点击上传</el-button>
+                    <div slot="tip" class="el-upload__tip">只支持上传doc,xlxs,csv,ppt,txt,md，最大支持10M</div>
+                </el-upload>
+            </el-tab-pane>
+            <el-tab-pane label="上传音频" name="voice">
+                <el-upload
+                        class="upload-demo"
+                        action="/mood/file/img/save"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :before-remove="beforeRemove"
+                        multiple
+                        :limit="3"
+                        :data="postData"
+                        :on-exceed="handleExceed"
+                        :file-list="fileList">
+                    <el-button size="small" type="primary">点击上传</el-button>
+                    <div slot="tip" class="el-upload__tip">只支持上传mp3，wav，wave，wma，flac，ape，最大支持50M</div>
+                </el-upload>
+            </el-tab-pane>
+            <el-tab-pane label="上传视频" name="video">
+                <el-upload
+                        class="upload-demo"
+                        action="/mood/file/img/save"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :before-remove="beforeRemove"
+                        multiple
+                        :limit="3"
+                        :data="postData"
+                        :on-exceed="handleExceed"
+                        :file-list="fileList">
+                    <el-button size="small" type="primary">点击上传</el-button>
+                    <div slot="tip" class="el-upload__tip">只支持上传mpeg，avi，mov，asf，nAvi，最大支持200M</div>
+                </el-upload>
+            </el-tab-pane>
+        </el-tabs>
+        <el-form-item>
+            <el-button type="primary" @click="submitForm('uploadForm')">立即创建</el-button>
+            <el-button @click="resetForm('uploadForm')">重置</el-button>
+        </el-form-item>
+    </el-form>
+
+
 </template>
 
 <script>
@@ -18,18 +98,89 @@
         name:"upload_img_temp.vue",
         data() {
             return {
-                fileList: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}],
-                postData: {
-
+                activeName: {},
+                fileList: [],
+                postData: {},
+                uploadData: {
+                    fileUrl: ""
+                },
+                uploadForm: {
+                    formMark: 0,
+                    fileType: 0,
+                },
+                rules: {
+                    title: [
+                        { required: true, message: '请输入文件名称', trigger: 'blur' },
+                        { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                    ],
+                    desc: [
+                        { required: true, message: '请文件描述', trigger: 'change' }
+                    ],
+                    type: [
+                        { required: true, message: '请选择文件类型', trigger: 'change' }
+                    ],
                 }
             };
         },
         methods: {
+            handleClick(tab, event) {
+                // console.log(tab.name);
+                switch (tab.name) {
+                    case "img":
+                        this.uploadForm.fileType = 1;
+                        this.postData.fileType = 1;
+                        break;
+                    case "doc":
+                        this.uploadForm.fileType = 2;
+                        this.postData.fileType = 2;
+                        break;
+                    case "voice":
+                        this.uploadForm.fileType = 3;
+                        this.postData.fileType = 3;
+                        break;
+                    case "video":
+                        this.uploadForm.fileType = 4;
+                        this.postData.fileType = 4;
+                        break;
+                    default:
+                }
+            },
             handleRemove(file, fileList) {
                 console.log(file, fileList);
             },
             handlePreview(file) {
                 console.log(file);
+            },
+            beforeRemove(file, fileList) {
+                return this.$confirm(`确定移除 ${ file.name }？`);
+            },
+            handleExceed(files, fileList) {
+                this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            //封面上传成功
+            uploadSuccessCover(response, file, fileList) {
+                console.log(response)
+                if (response.status_code != 0) {
+                    this.$message.error('封面文件上传失败，请稍后再试');
+                } else {
+                    this.$message({
+                        message: '封面文件上传成功',
+                        type: 'success'
+                    });
+                }
+            },
+            //文件上传成功
+            uploadSuccessFile(response, file, fileList) {
+                console.log(response)
+                if (response.status_code == 0) {
+                    this.uploadForm.file_url = response.result.src;
+                    this.$message({
+                        message: '文件上传成功',
+                        type: 'success'
+                    });
+                } else {
+                    this.$message.error('文件上传失败，请稍后再试');
+                }
             },
             getCsrfField() {
                 var that = this
@@ -44,6 +195,21 @@
                         }
                     }
                 })
+            },
+            generateFormMark() {
+            },
+            submitForm(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        alert('submit!');
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
             }
         },
         created: function () {

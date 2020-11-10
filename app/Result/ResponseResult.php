@@ -17,6 +17,8 @@ class ResponseResult
     //所有响应码集合
     const SUCCESS_COM = 0;
     //数据错误类
+    const FAIL_NOT_ALLOWED_UPLOAD_IMG_TYPE = -1101;
+    const FAIL_EXCEED_SIZE_UPLOAD = -1102;
     //数据为空 | 不存在
     const FAIL_EMPTY = -1001;
     const FAIL_PARAM_LACK = -1002;
@@ -40,6 +42,8 @@ class ResponseResult
         self::FAIL_SERVICE_ADD => "服务出错，新增失败",
         self::FAIL_ESSAY_INVALID => "短文不存在",
         self::FAIL_DATA_EXISTS => "操作重复",
+        self::FAIL_NOT_ALLOWED_UPLOAD_IMG_TYPE => '上传的图片类型不支持',
+        self::FAIL_EXCEED_SIZE_UPLOAD => '上传的文件过大',
     ];
     /**
      * 成功响应结果
