@@ -44,7 +44,7 @@
 
 <script>
     export default {
-        name: "menu",
+        name: "menu.vue",
         data() {
             return {
                 activeIndex: '1',

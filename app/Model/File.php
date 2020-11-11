@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     protected $table = "upload_file";
+    protected $fillable = [
+        'uid', 'title', 'desc', 'cover', 'file_url', 'file_type', 'file_size', 'minetype', 'unique_id'
+    ];
 
     /**
      * 添加一条文件记录
@@ -20,6 +23,6 @@ class File extends Model
      */
     public function addFile($data)
     {
-        return $this->save($data);
+        return $this->firstOrCreate($data);
     }
 }

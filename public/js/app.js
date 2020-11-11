@@ -106925,7 +106925,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "menu",
+    name: "menu.vue",
     data: function data() {
         return {
             activeIndex: '1',
@@ -107721,7 +107721,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -107734,6 +107734,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
 //
 //
 //
@@ -108490,7 +108491,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "user_avatar" }, [
       _c("a", { staticClass: "thumbnail", attrs: { href: "#" } }, [
-        _c("img", { attrs: { src: "/imgs/short/bg_word.png", alt: "头像" } })
+        _c("img", {
+          attrs: {
+            src:
+              "/storage/imgs/upload/foRLrtap4vBlXOe0HlHaJpqz4zdZjUwYupc3OFwE.jpeg",
+            alt: "头像"
+          }
+        })
       ])
     ])
   },
@@ -108975,7 +108982,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -108986,12 +108993,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -109093,11 +109094,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 fileUrl: ""
             },
             uploadForm: {
-                formMark: 0,
-                fileType: 0
+                fileType: 0,
+                fileListInfo: []
             },
+            removeFormData: {},
             rules: {
-                title: [{ required: true, message: '请输入文件名称', trigger: 'blur' }, { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }],
+                title: [{ required: true, message: '请输入文件名称', trigger: 'blur' }, { min: 1, max: 15, message: '长度在 1 到 15 个字符', trigger: 'blur' }],
                 desc: [{ required: true, message: '请文件描述', trigger: 'change' }],
                 type: [{ required: true, message: '请选择文件类型', trigger: 'change' }]
             }
@@ -109105,33 +109107,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        //tab标签页点击 同一时间只允许上传一类文件
         handleClick: function handleClick(tab, event) {
             // console.log(tab.name);
             switch (tab.name) {
                 case "img":
                     this.uploadForm.fileType = 1;
                     this.postData.fileType = 1;
+                    this.removeFormData.fileType = 1;
                     break;
                 case "doc":
                     this.uploadForm.fileType = 2;
                     this.postData.fileType = 2;
+                    this.removeFormData.fileType = 2;
                     break;
                 case "voice":
                     this.uploadForm.fileType = 3;
                     this.postData.fileType = 3;
+                    this.removeFormData.fileType = 3;
                     break;
                 case "video":
                     this.uploadForm.fileType = 4;
                     this.postData.fileType = 4;
+                    this.removeFormData.fileType = 4;
                     break;
                 default:
             }
         },
         handleRemove: function handleRemove(file, fileList) {
-            console.log(file, fileList);
-        },
-        handlePreview: function handlePreview(file) {
-            console.log(file);
+            if (!this.removeFile(file)) {
+                return false;
+            }
+            //删除当前数组元素
+            fileList.forEach(function (val, index) {
+                if (file.name == val.name) {
+                    fileList.splice(index, 1);
+                    //调用删除接口
+                }
+            });
         },
         beforeRemove: function beforeRemove(file, fileList) {
             return this.$confirm("\u786E\u5B9A\u79FB\u9664 " + file.name + "\uFF1F");
@@ -109142,10 +109155,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         //封面上传成功
         uploadSuccessCover: function uploadSuccessCover(response, file, fileList) {
-            console.log(response);
             if (response.status_code != 0) {
                 this.$message.error('封面文件上传失败，请稍后再试');
+                this.fileList.pop();
             } else {
+                this.uploadForm.cover_url = response.result.src;
                 this.$message({
                     message: '封面文件上传成功',
                     type: 'success'
@@ -109155,16 +109169,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         //文件上传成功
         uploadSuccessFile: function uploadSuccessFile(response, file, fileList) {
-            console.log(response);
             if (response.status_code == 0) {
-                this.uploadForm.file_url = response.result.src;
+                this.uploadForm.fileListInfo.push(response.result);
                 this.$message({
                     message: '文件上传成功',
                     type: 'success'
                 });
             } else {
-                this.$message.error('文件上传失败，请稍后再试');
+                //上传失败是删除当前图片预览
+                fileList.pop();
+                this.$message.error(response.status_msg);
             }
+        },
+        removeFile: function removeFile(file) {
+            var removeFlag = true;
+            var that = this;
+            this.removeFormData.filename = file.name;
+            $.ajax({
+                url: "/mood/file/removeFile",
+                data: this.removeFormData,
+                dataType: 'json',
+                type: 'POST',
+                success: function success(res) {
+                    if (res.status_code == 0) {
+                        that.$message.success(res.status_msg);
+                    } else {
+                        that.$message.error(res.status_msg);
+                        removeFlag = false;
+                    }
+                }
+            });
+            return removeFlag;
         },
         getCsrfField: function getCsrfField() {
             var that = this;
@@ -109176,15 +109211,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 success: function success(res) {
                     if (res.error_code == 0) {
                         that.postData._token = res.result;
+                        that.uploadForm._token = res.result;
+                        that.removeFormData._token = res.result;
                     }
                 }
             });
         },
-        generateFormMark: function generateFormMark() {},
         submitForm: function submitForm(formName) {
+            var _this = this;
+
+            var that = this;
             this.$refs[formName].validate(function (valid) {
                 if (valid) {
-                    alert('submit!');
+                    $.ajax({
+                        url: '/mood/file/save',
+                        data: _this.uploadForm,
+                        dataType: 'json',
+                        type: "POST",
+                        success: function success(res) {
+                            if (res.status_code == 0) {
+                                that.$message({
+                                    message: '文件上传成功',
+                                    type: 'success'
+                                });
+                                //清空表单
+                                that.resetForm('uploadForm', "【文件已上传成功】");
+                            } else {
+                                this.$message.error(response.status_msg);
+                            }
+                        }
+                    });
                 } else {
                     console.log('error submit!!');
                     return false;
@@ -109192,7 +109248,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         resetForm: function resetForm(formName) {
+            var msg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
             this.$refs[formName].resetFields();
+            //清空文件列表
+            if (confirm("是否清空文件列表？" + msg)) {
+                this.fileList = [];
+            }
         }
     },
     created: function created() {
@@ -109255,12 +109317,12 @@ var render = function() {
         {
           staticClass: "upload-demo",
           attrs: {
-            action: "/mood/file/img/save",
-            "on-preview": _vm.handlePreview,
-            "on-remove": _vm.handleRemove,
+            action: "/mood/file/cover",
             "file-list": _vm.fileList,
             data: _vm.postData,
             "on-success": _vm.uploadSuccessCover,
+            "on-remove": _vm.handleRemove,
+            "before-remove": _vm.beforeRemove,
             "list-type": "picture"
           }
         },
@@ -109299,13 +109361,13 @@ var render = function() {
                   staticClass: "upload-demo",
                   attrs: {
                     action: "/mood/file/img/save",
-                    "on-preview": _vm.handlePreview,
-                    "on-remove": _vm.handleRemove,
                     "file-list": _vm.fileList,
                     multiple: true,
                     data: _vm.postData,
                     limit: 9,
                     "on-success": _vm.uploadSuccessFile,
+                    "before-remove": _vm.beforeRemove,
+                    "on-remove": _vm.handleRemove,
                     "list-type": "picture"
                   }
                 },
@@ -109342,8 +109404,6 @@ var render = function() {
                   staticClass: "upload-demo",
                   attrs: {
                     action: "/mood/file/img/save",
-                    "on-preview": _vm.handlePreview,
-                    "on-remove": _vm.handleRemove,
                     "before-remove": _vm.beforeRemove,
                     multiple: "",
                     limit: 3,
@@ -109385,8 +109445,6 @@ var render = function() {
                   staticClass: "upload-demo",
                   attrs: {
                     action: "/mood/file/img/save",
-                    "on-preview": _vm.handlePreview,
-                    "on-remove": _vm.handleRemove,
                     "before-remove": _vm.beforeRemove,
                     multiple: "",
                     limit: 3,
@@ -109432,8 +109490,6 @@ var render = function() {
                   staticClass: "upload-demo",
                   attrs: {
                     action: "/mood/file/img/save",
-                    "on-preview": _vm.handlePreview,
-                    "on-remove": _vm.handleRemove,
                     "before-remove": _vm.beforeRemove,
                     multiple: "",
                     limit: 3,

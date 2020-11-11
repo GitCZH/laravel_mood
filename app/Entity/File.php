@@ -9,6 +9,38 @@
 namespace App\Entity;
 class File
 {
+    //上传路径字典
+    public static $pathMap = [
+        1 => 'public/imgs/upload',
+        2 => 'public/docs/upload',
+        3 => 'public/voices/upload',
+        4 => 'public/videos/upload',
+    ];
+
+    //返回软连接的目录路径
+    public static $delPathMap = [
+        1 => '/storage/imgs/upload',
+        2 => '/storage/docs/upload',
+        3 => '/storage/voices/upload',
+        4 => '/storage/videos/upload',
+    ];
+
+    //上传类型限制字典
+    public static $typeMap = [
+        1 => ['jpeg', 'jpg', 'png', 'gif',],
+        2 => ['doc','xlxs','csv','ppt','txt','md'],
+        3 => ['mp3', 'wav', 'wave', 'wma', 'flac', 'ape'],
+        4 => ['mpeg', 'avi', 'mov', 'asf', 'nAvi'],
+    ];
+
+    //上传文件大小限制字典
+    public static $sizeMap = [
+        1 => 5 * 1024 * 1024,
+        2 => 10 * 1024 * 1024,
+        3 => 50 * 1024 * 1024,
+        4 => 200 * 1024 * 1024,
+    ];
+
     private $id = 0;
     private $uid = 0;
     private $title = "";
@@ -18,7 +50,9 @@ class File
     private $fileType = "";
     private $fileSize = 0;
     private $mineType = "";
-    private $ctime = 0;
+    private $identifyId = 0;
+    private $createdAt = "";
+    private $updatedAt = "";
 
     /**
      * File constructor.
@@ -140,22 +174,6 @@ class File
     }
 
     /**
-     * @return int
-     */
-    public function getCtime()
-    {
-        return $this->ctime;
-    }
-
-    /**
-     * @param int $ctime
-     */
-    public function setCtime($ctime)
-    {
-        $this->ctime = $ctime;
-    }
-
-    /**
      * @return string
      */
     public function getFileUrl()
@@ -188,6 +206,64 @@ class File
     }
 
     /**
+     * @return int
+     */
+    public function getIdentifyId()
+    {
+        return $this->identifyId;
+    }
+
+    /**
+     * @param int $identifyId
+     */
+    public function setIdentifyId($identifyId)
+    {
+        $this->identifyId = $identifyId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param string $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param string $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * 新增文件
+     * @return bool
+     */
+    public function add()
+    {
+        $file = new \App\Model\File();
+        return $file->addFile($this->getDbArray());
+    }
+
+    /**
      * 获取入库的数据
      * @return array
      */
@@ -201,7 +277,8 @@ class File
             'file_url' => $this->getFileUrl(),
             'file_type' => $this->getFileType(),
             'file_size' => $this->getFileSize(),
-            'ctime' => time()
+            'minetype' => $this->getMineType(),
+            'unique_id' => $this->getIdentifyId(),
         ];
     }
 }

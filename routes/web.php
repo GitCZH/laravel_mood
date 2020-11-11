@@ -51,10 +51,16 @@ Route::prefix("/mood/short")->middleware("mood_index")->group(function (){
     Route::get("/getEssayClick", "Index\ClickLikeController@getEssayClick");
 });
 Route::prefix("/mood/file")->middleware("mood_index")->group(function (){
-    //上传图片路由
-    Route::get("/img/index", "FileController@uploadImgPage");
-    //保存图片路由
-    Route::post("/img/save", "FileController@saveImg");
+    //保存用户上传文件信息
+    Route::post("/save", "FileController@storeFileUploadInfo");
+    //删除文件
+    Route::post("/removeFile", "FileController@removeFile");
+    //文件封面接口
+    Route::post("/cover", "FileController@uploadFileCover");
+    //上传文件路由
+    Route::get("/img/index", "FileController@uploadFilePage");
+    //保存文件路由
+    Route::post("/img/save", "FileController@saveFile");
 });
 //获取表单令牌
 Route::get("/home/getCsrf", "HomeController@getCsrfField");
