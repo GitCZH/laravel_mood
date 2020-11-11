@@ -106923,6 +106923,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "menu.vue",
@@ -107029,21 +107034,40 @@ var render = function() {
         [
           _c("template", { slot: "title" }, [_vm._v("杂货铺")]),
           _vm._v(" "),
-          _c("el-menu-item", { attrs: { index: "4-1" } }, [
-            _c("a", { attrs: { href: "/mood/file/img/index" } }, [
-              _vm._v("图片站")
-            ])
-          ]),
+          _c(
+            "a",
+            { attrs: { href: "" } },
+            [_c("el-menu-item", { attrs: { index: "4-1" } }, [_vm._v("B")])],
+            1
+          ),
           _vm._v(" "),
           _c(
             "el-submenu",
             { attrs: { index: "4-2" } },
             [
-              _c("template", { slot: "title" }, [_vm._v("选项4")]),
+              _c("template", { slot: "title" }, [_vm._v("文件站")]),
               _vm._v(" "),
-              _c("el-menu-item", { attrs: { index: "4-2-1" } }, [
-                _vm._v("选项1")
-              ])
+              _c(
+                "a",
+                { attrs: { href: "/mood/file/upload/index" } },
+                [
+                  _c("el-menu-item", { attrs: { index: "4-2-1" } }, [
+                    _vm._v("上传")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { attrs: { href: "/mood/file/index" } },
+                [
+                  _c("el-menu-item", { attrs: { index: "4-2-2" } }, [
+                    _vm._v("浏览")
+                  ])
+                ],
+                1
+              )
             ],
             2
           )
@@ -109360,7 +109384,7 @@ var render = function() {
                 {
                   staticClass: "upload-demo",
                   attrs: {
-                    action: "/mood/file/img/save",
+                    action: "/mood/file/saveFile",
                     "file-list": _vm.fileList,
                     multiple: true,
                     data: _vm.postData,
@@ -109403,7 +109427,7 @@ var render = function() {
                 {
                   staticClass: "upload-demo",
                   attrs: {
-                    action: "/mood/file/img/save",
+                    action: "/mood/file/saveFile",
                     "before-remove": _vm.beforeRemove,
                     multiple: "",
                     limit: 3,
@@ -109444,7 +109468,7 @@ var render = function() {
                 {
                   staticClass: "upload-demo",
                   attrs: {
-                    action: "/mood/file/img/save",
+                    action: "/mood/file/saveFile",
                     "before-remove": _vm.beforeRemove,
                     multiple: "",
                     limit: 3,
@@ -109489,7 +109513,7 @@ var render = function() {
                 {
                   staticClass: "upload-demo",
                   attrs: {
-                    action: "/mood/file/img/save",
+                    action: "/mood/file/saveFile",
                     "before-remove": _vm.beforeRemove,
                     multiple: "",
                     limit: 3,

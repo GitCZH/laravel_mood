@@ -9,12 +9,17 @@
         </el-menu-item>
         <el-submenu index="4">
             <template slot="title">杂货铺</template>
-            <el-menu-item index="4-1">
-                <a href="/mood/file/img/index">图片站</a>
-            </el-menu-item>
+            <a href="">
+                <el-menu-item index="4-1">B</el-menu-item>
+            </a>
             <el-submenu index="4-2">
-                <template slot="title">选项4</template>
-                <el-menu-item index="4-2-1">选项1</el-menu-item>
+                <template slot="title">文件站</template>
+                <a href="/mood/file/upload/index">
+                    <el-menu-item index="4-2-1">上传</el-menu-item>
+                </a>
+                <a href="/mood/file/index">
+                    <el-menu-item index="4-2-2">浏览</el-menu-item>
+                </a>
             </el-submenu>
         </el-submenu>
         <el-submenu index="5" v-if="isLogin">

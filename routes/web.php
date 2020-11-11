@@ -58,9 +58,11 @@ Route::prefix("/mood/file")->middleware("mood_index")->group(function (){
     //文件封面接口
     Route::post("/cover", "FileController@uploadFileCover");
     //上传文件路由
-    Route::get("/img/index", "FileController@uploadFilePage");
+    Route::get("/upload/index", "FileController@uploadFilePage");
     //保存文件路由
-    Route::post("/img/save", "FileController@saveFile");
+    Route::post("/saveFile", "FileController@saveFile");
+    //浏览
+    Route::get("/index", "FileController@index");
 });
 //获取表单令牌
 Route::get("/home/getCsrf", "HomeController@getCsrfField");

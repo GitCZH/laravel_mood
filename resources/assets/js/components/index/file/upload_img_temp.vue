@@ -22,7 +22,7 @@
             <el-tab-pane label="上传图片" name="img">
                 <el-upload
                         class="upload-demo"
-                        action="/mood/file/img/save"
+                        action="/mood/file/saveFile"
                         :file-list="fileList"
                         :multiple=true
                         :data="postData"
@@ -38,7 +38,7 @@
             <el-tab-pane label="上传文档" name="doc">
                 <el-upload
                         class="upload-demo"
-                        action="/mood/file/img/save"
+                        action="/mood/file/saveFile"
                         :before-remove="beforeRemove"
                         multiple
                         :limit="3"
@@ -52,7 +52,7 @@
             <el-tab-pane label="上传音频" name="voice">
                 <el-upload
                         class="upload-demo"
-                        action="/mood/file/img/save"
+                        action="/mood/file/saveFile"
                         :before-remove="beforeRemove"
                         multiple
                         :limit="3"
@@ -66,7 +66,7 @@
             <el-tab-pane label="上传视频" name="video">
                 <el-upload
                         class="upload-demo"
-                        action="/mood/file/img/save"
+                        action="/mood/file/saveFile"
                         :before-remove="beforeRemove"
                         multiple
                         :limit="3"

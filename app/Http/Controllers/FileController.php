@@ -16,9 +16,15 @@ use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
+    public function index()
+    {
 
+    }
 
-    //上传图片页面
+    /**
+     * 上传图片页面
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function uploadFilePage()
     {
         return view("file/img/upload");
@@ -192,6 +198,10 @@ class FileController extends Controller
         return ResponseResult::getResponse($code, "删除文件成功");
     }
 
+    /**
+     * 获取brand图片
+     * @return array
+     */
     public function getNav()
     {
         $result = [
