@@ -13,7 +13,7 @@
             console.log('Component mounted.Readme')
         },
         created() {
-            console.log("MMMMMMMMMNNNNNN")
+            console.log("readme create")
         }
     }
 </script>
