@@ -12,7 +12,8 @@
                             </p>
                             <div class="user_avatar">
                                 <a href="#" class="thumbnail">
-                                    <img src="/imgs/short/bg_word.png" alt="头像">
+                                    <!--<img src="/imgs/short/bg_word.png" alt="头像">-->
+                                    <img src="/storage/imgs/upload/foRLrtap4vBlXOe0HlHaJpqz4zdZjUwYupc3OFwE.jpeg" alt="头像">
                                 </a>
                             </div>
                         </div>

@@ -1,0 +1,2 @@
+app.blade.php是laravel默认布局的文件
+boot.blade.php是使用bootstrap前端框架的布局文件
