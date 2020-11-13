@@ -239,6 +239,8 @@
                                     //添加到数组
                                     items.forEach(function (val, index) {
                                         _this.essay_items.push(val)
+                                        //获取评论
+                                        _this.getEssayCmt(val.id, 0)
                                         _this.lastEssayId = val.id
                                     })
 

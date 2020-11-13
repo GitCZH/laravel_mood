@@ -74,9 +74,11 @@ class AlgorithmSortController extends Controller
     {
         $rangeArr = $this->getRandArr();
         dump($rangeArr);
+
         //选取第一个元素为已排好序的结果集
         $result = [$rangeArr[0]];
         for ($i = 1; $i < count($rangeArr); $i++) {
+            //待插入元素
             $cur = $rangeArr[$i];
             $preIndex = $i - 1;
             //与结果集的值比较，直到结果集的元素小于或等于当前元素
@@ -100,6 +102,75 @@ class AlgorithmSortController extends Controller
 //            dump($result);
         }
         dump($result);
+    }
+
+    /**
+     * 插入排序
+     * 索引值确定新定义
+     */
+    public function newInsert($rangeArr)
+    {
+        if (empty($rangeArr)) {
+            $rangeArr = $this->getRandArr();
+        }
+        dump($rangeArr);
+
+        $len = count($rangeArr);
+        //假定第一个元素为已排好序的列
+        for ($i = 1; $i < $len; $i++) {
+            //待插入元素
+            $waitInsert = $rangeArr[$i];
+            //已排序列的最大索引值
+            $sortedMaxIndex = $i - 1;
+            //从后向前遍历已排序列的元素
+            while ($sortedMaxIndex >= 0 && $rangeArr[$sortedMaxIndex] >= $waitInsert) {
+                //已排序元素后移
+                $rangeArr[$sortedMaxIndex + 1] = $rangeArr[$sortedMaxIndex];
+                $sortedMaxIndex--;
+            }
+            //待插入元素比所有已排序元素都小 || 待排序元素小于已排序列的某一个值
+            $rangeArr[$sortedMaxIndex + 1] = $waitInsert;
+        }
+        dump($rangeArr);
+    }
+
+    /**
+     * 希尔排序
+     * 希尔排序可以说是插入排序的一种变种。
+     * 无论是插入排序还是冒泡排序，如果数组的最大值刚好是在第一位，
+     * 要将它挪到正确的位置就需要 n - 1 次移动。
+     * 也就是说，原数组的一个元素如果距离它正确的位置很远的话，
+     * 则需要与相邻元素交换很多次才能到达正确的位置，这样是相对比较花时间了。
+     *
+     * 把原序列进行增量间隔排序形成局部有序，最后再进行插入排序时移动元素次数就会变少
+     */
+    public function shellInsert()
+    {
+        $rangeArr = $this->getRandArr();
+        dump($rangeArr);
+
+        //设置增量间隔
+        $len = count($rangeArr);
+        //从1/2间隔开始，到1为止
+        for ($i = $len / 2; $i > 0; $i--) {
+            //执行插入排序
+            for ($j = $i; $j < $len; $j++) {
+                //待插入元素
+                $waitInsert = $rangeArr[$j];
+                //已排序的最大索引值
+                $sortedMaxIndex = $j - $i;
+                //对已排序元素进行比较
+                while ($sortedMaxIndex >= 0 && $rangeArr[$sortedMaxIndex] >= $waitInsert) {
+                    //已排序元素后移$i位
+                    $rangeArr[$sortedMaxIndex + $i] = $rangeArr[$sortedMaxIndex];
+                    $sortedMaxIndex -= $i;
+                }
+                $rangeArr[$sortedMaxIndex + $i] = $waitInsert;
+//                dump($rangeArr);
+            }
+//            break;
+        }
+        dump($rangeArr);
     }
 
     /**
@@ -129,6 +200,73 @@ class AlgorithmSortController extends Controller
             $rangeArr[$preIndex + 1] = $current;
     }
         dump($rangeArr);
+    }
+
+    /**
+     * 归并排序
+     * 利用递归和分治的方法实现排序。
+     * 整个无序序列分割成n/2个子序列，通过分治使每个子序列有序
+     * 再通过归并把n/2个子序列合并为一个完整有序序列
+     *
+     * 首先把一个未排序的序列从中间分割成2部分，
+     * 再把2部分分成4部分，依次分割下去，
+     * 直到分割成一个一个的数据，再把这些数据两两归并到一起，
+     * 使之有序，不停的归并，最后成为一个排好序的序列。
+     */
+    public function mergeSort()
+    {
+        $rangeArr = $this->getRandArr();
+        dump($rangeArr);
+
+        $this->bladeMergeSort($rangeArr, 0, count($rangeArr) - 1);
+        dump($rangeArr);
+    }
+
+    private function bladeMergeSort(&$origin, $start, $end)
+    {
+        //最小序列，一个序列只有一个元素
+        if ($start >= $end) {
+            return [];
+        }
+
+        $result = [];
+        //分割序列
+        $len = $end - $start;
+        $mid = $start + floor($len / 2);
+        $leftStart = $start;
+        $leftEnd = $mid;
+        $rightStart = $mid + 1;
+        $rightEnd = $end;
+
+//        dd($mid);
+        $k = $start;
+        //处理左半边序列
+        $this->bladeMergeSort($origin, $leftStart, $leftEnd);
+        //处理右半边序列
+        $this->bladeMergeSort($origin, $rightStart, $rightEnd);
+
+
+        while ($leftStart <= $leftEnd && $rightStart <= $rightEnd) {
+            $result[$k++] = $origin[$leftStart] < $origin[$rightStart] ? $origin[$leftStart++] : $origin[$rightStart++];
+        }
+        //剩余元素加入到合并数组
+        while ($leftStart <= $leftEnd) {
+            $result[$k++] = $origin[$leftStart++];
+        }
+        while ($rightStart <= $rightEnd) {
+            $result[$k++] = $origin[$rightStart++];
+        }
+//        echo "before origin\n";
+//        dump($origin);
+//        echo "result\n";
+//        dump($result);
+        //重赋值原数组中前end位已排好序的元素 【因为归并排序是稳定的，所以可以这么修改原数组赋值】
+        for ($i = $start; $i <= $end; $i++) {
+            $origin[$i] = $result[$i];
+        }
+//        echo "after origin\n";
+//        dump($origin);
+        return $result;
     }
 
     /**

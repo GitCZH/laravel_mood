@@ -23,7 +23,11 @@ Route::prefix("algorithm_sort")->group(function (){
    Route::get("/bubble", "Admin\AlgorithmSortController@bubble");
    Route::get("/select", "Admin\AlgorithmSortController@select");
    Route::get("/insert", "Admin\AlgorithmSortController@insert");
+   Route::get("/newInsert", "Admin\AlgorithmSortController@newInsert");
+   Route::get("/shellInsert", "Admin\AlgorithmSortController@shellInsert");
    Route::get("/shortInsert", "Admin\AlgorithmSortController@shortInsert");
+   //归并排序
+   Route::get("/mergeSort", "Admin\AlgorithmSortController@mergeSort");
 });
 //后台管理相关路由
 Route::prefix("/admin")->middleware("mood_admin")->group(function (){
