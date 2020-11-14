@@ -108683,13 +108683,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "user_avatar" }, [
       _c("a", { staticClass: "thumbnail", attrs: { href: "#" } }, [
-        _c("img", {
-          attrs: {
-            src:
-              "/storage/imgs/upload/foRLrtap4vBlXOe0HlHaJpqz4zdZjUwYupc3OFwE.jpeg",
-            alt: "头像"
-          }
-        })
+        _c("img", { attrs: { src: "/imgs/short/bg_word.png", alt: "头像" } })
       ])
     ])
   },
