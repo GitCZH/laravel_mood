@@ -107094,6 +107094,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "menu.vue",
@@ -107182,12 +107186,16 @@ var render = function() {
       on: { select: _vm.handleSelect }
     },
     [
-      _c("el-menu-item", { attrs: { index: "1" } }, [_vm._v("Mood")]),
+      _c("el-menu-item", { attrs: { index: "1" } }, [
+        _c("a", { attrs: { href: "/home" } }, [_vm._v("Mood")])
+      ]),
       _vm._v(" "),
       _c("el-menu-item", { attrs: { index: "2" } }, [
-        _c("img", {
-          attrs: { width: "25", height: "25", src: _vm.navImg, alt: "" }
-        })
+        _c("a", { attrs: { href: "/home" } }, [
+          _c("img", {
+            attrs: { width: "25", height: "25", src: _vm.navImg, alt: "" }
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("el-menu-item", { attrs: { index: "3" } }, [

@@ -33,10 +33,6 @@ class FileController extends Controller
 
     public function index()
     {
-        $s = "asdfasdfasf.jpg";
-        dump(strrpos($s, '.'));
-        dump($s);
-        dump(substr($s, 0, strrpos($s, '.')));
     }
 
     /**
