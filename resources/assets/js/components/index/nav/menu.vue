@@ -5,10 +5,10 @@
             <img width="25" height="25" :src="navImg" alt="">
         </el-menu-item>
         <el-menu-item index="3">
-            <a href="/mood/short/index">心情驿站</a>
+            <a href="/mood/short/index">主场</a>
         </el-menu-item>
         <el-submenu index="4">
-            <template slot="title">杂货铺</template>
+            <template slot="title">口袋</template>
             <a href="">
                 <el-menu-item index="4-1">B</el-menu-item>
             </a>

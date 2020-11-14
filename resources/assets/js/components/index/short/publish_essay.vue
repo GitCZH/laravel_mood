@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-12">
         <div class="panel panel-success">
-            <div class="panel-heading">聊聊发生什么了吧~</div>
+            <div class="panel-heading">我的主场</div>
             <div class="panel-body">
                 <textarea class="form-control" rows="3" v-model="essayContent"></textarea>
                 <br>
@@ -16,7 +16,7 @@
         name: "publish_essay.vue",
         data() {
             return {
-                essayContent: "分享点什么吧~"
+                essayContent: "今日xxx，心情xxx"
             }
         },
         methods: {
