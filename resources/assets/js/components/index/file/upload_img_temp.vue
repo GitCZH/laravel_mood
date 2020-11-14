@@ -9,7 +9,7 @@
         <el-upload
                 class="upload-demo"
                 action="/mood/file/cover"
-                :file-list="coverFile"
+                :file-list="fileList"
                 :data="postData"
                 :on-success="uploadSuccessCover"
                 :on-remove="handleRemove"
@@ -309,6 +309,7 @@
                     this.fileList = []
                     //清楚上传文件列表
                     this.uploadForm.fileListInfo = []
+                    this.uploadForm.cover_url = ""
                 }
             }
         },
