@@ -6,19 +6,37 @@
  * Time: 上午 11:53
  */
 namespace App\Http\Controllers;
+use App\Cache\Redis\FileCache;
 use App\Entity\File;
 use App\Result\ResponseResult;
 use App\Service\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
+    private $fileService = null;
+    private $fileCache = null;
+
+    /**
+     * FileController constructor.
+     * @param FileService $fileService
+     * @param FileCache $fileCache
+     */
+    public function __construct(FileService $fileService, FileCache $fileCache)
+    {
+        $this->fileService = $fileService;
+        $this->fileCache = $fileCache;
+    }
+
+
     public function index()
     {
-
+        $s = "asdfasdfasf.jpg";
+        dump(strrpos($s, '.'));
+        dump($s);
+        dump(substr($s, 0, strrpos($s, '.')));
     }
 
     /**
@@ -31,7 +49,7 @@ class FileController extends Controller
     }
 
     /**
-     * 保存用户上传文件
+     * 保存用户上传文件 提交表单
      * @param Request $request
      * @return array
      */
@@ -52,40 +70,44 @@ class FileController extends Controller
         $file->setUid(Auth::user()->id);
         //生成每次上传的唯一id TODO使用雪花算法生成唯一id
         $file->setIdentifyId(FileService::getUniqueId($title . $desc));
-        $saveRes = [];
+        //获取文件地址
+        $src = implode(',', array_column($fileUrl, 'src'));
+        $totalSize = array_sum(array_column($fileUrl, 'size'));
+        $file->setFileUrl($src);
+        $file->setFileSize($totalSize);
+        $addRes = $file->add();
+        //添加图片
+        if ($addRes instanceof \App\Model\File) {
+            return ResponseResult::getResponse(ResponseResult::SUCCESS_COM);
+        }
+        //添加失败，删除上传的文件
         foreach ($fileUrl as $tmpFile) {
-            $file->setFileUrl($tmpFile['src']);
-            //获取图片基本信息
-            $file->setFileSize($tmpFile['size']);
-            //获取后缀名
-            $file->setMineType(FileService::getFileExt($tmpFile['src']));
-            //添加图片
-            $addRes = $file->add();
-            if ($addRes instanceof \App\Model\File) {
-                continue;
-            }
-            //保存失败
-            $saveRes['filename'][] = $tmpFile['src'];
             //删除文件
             Storage::delete($tmpFile['src']);
         }
-        $code = !empty($saveRes) ? ResponseResult::FAIL_SERVICE_ADD : ResponseResult::SUCCESS_COM;
-        return ResponseResult::getResponse($code);
+        return ResponseResult::getResponse(ResponseResult::FAIL_SERVICE_ADD);
     }
 
     /**
-     * 上传封面接口
+     * 上传封面接口 | 异步上传文件
      * @param Request $request
      * @return array
      */
     public function uploadFileCover(Request $request)
     {
         $uploadFileObj = $request->file('file');
-        return $this->saveImg($uploadFileObj);
+        if (is_null($uploadFileObj)) {
+            return ResponseResult::getResponse(ResponseResult::FAIL_PARAM_ILLEGAL);
+        }
+        $checkRes = $this->fileService->checkFile($uploadFileObj, "img");
+        if ($checkRes !== true) {
+            return ResponseResult::getResponse($checkRes);
+        }
+        return $this->storeFile($uploadFileObj, 1);
     }
 
     /**
-     * 保存文件
+     * 保存文件 | 异步上传文件
      * @param Request $request
      * @return array
      */
@@ -94,89 +116,66 @@ class FileController extends Controller
         //获取上传文件的类型
         $fileType = $request->get("fileType");
         $uploadFileObj = $request->file('file');
+        if (is_null($uploadFileObj)) {
+            return ResponseResult::getResponse(ResponseResult::FAIL_PARAM_ILLEGAL);
+        }
         switch ($fileType) {
             case "1":
-                return $this->saveImg($uploadFileObj);
+                $checkRes = $this->fileService->checkFile($uploadFileObj, "img");
+                if ($checkRes !== true) {
+                    return ResponseResult::getResponse($checkRes);
+                }
                 break;
             case "2":
-                return $this->saveDoc($uploadFileObj);
+                $checkRes = $this->fileService->checkFile($uploadFileObj, "doc");
+                if ($checkRes !== true) {
+                    return ResponseResult::getResponse($checkRes);
+                }
                 break;
             case "3":
-                return $this->saveVoice($uploadFileObj);
+                $checkRes = $this->fileService->checkFile($uploadFileObj, "voice");
+                if ($checkRes !== true) {
+                    return ResponseResult::getResponse($checkRes);
+                }
                 break;
             case "4":
-                return $this->saveVideo($uploadFileObj);
+                $checkRes = $this->fileService->checkFile($uploadFileObj, "video");
+                if ($checkRes !== true) {
+                    return ResponseResult::getResponse($checkRes);
+                }
                 break;
             default:
                 return ResponseResult::getResponse(ResponseResult::FAIL_PARAM_ILLEGAL);
         }
+        return $this->storeFile($uploadFileObj, $fileType);
     }
 
     /**
-     * 保存图片
+     * 保存图片到服务器
      * @param \Illuminate\Http\UploadedFile $uploadFileObj
+     * @param $type 1|img 2|doc 3|voice 4|video
      * @return array
      */
-    public function saveImg($uploadFileObj)
+    public function storeFile($uploadFileObj, $type)
     {
-        if (is_null($uploadFileObj)) {
-            return ResponseResult::getResponse(ResponseResult::FAIL_PARAM_ILLEGAL);
-        }
-        //图片上传检查
-        $checkRes = $this->checkImgFile($uploadFileObj);
-        if ($checkRes !== true) {
-            return ResponseResult::getResponse($checkRes);
-        }
         //保存文件
-        $saveRes = $uploadFileObj->storeAs(File::$pathMap[1], $uploadFileObj->getClientOriginalName());
+        //重新生成保存的文件名
+        $noExtName = substr($uploadFileObj->getClientOriginalName(), 0, strrpos($uploadFileObj->getClientOriginalName(), '.'));
+        $newFilename = FileService::getUniqueFilename($noExtName) . "." . FileService::getFileExt($uploadFileObj->getClientOriginalName());
+        $saveRes = $uploadFileObj->storeAs(File::$pathMap[$type], $newFilename);
         $code = $saveRes === false ? ResponseResult::FAIL_COM : ResponseResult::SUCCESS_COM;
         if ($saveRes) {
             //记录上传成功的图片信息到redis
-            $redisHandle = Redis::connection();
-            $imgHashKey = Auth::user()->id . "_";
-            $redisHandle->set("aa", $saveRes);
+            $statRes = $this->fileCache->statUpload(Auth::user()->id, "img");
         }
         //获取上传后的文件url
         $imgUrl = Storage::url($saveRes);
         $result = [
             'src' => $imgUrl,
-            'size' => $uploadFileObj->getSize()
+            'size' => $uploadFileObj->getSize(),
+            'newName' => $saveRes
         ];
         return ResponseResult::getResponse($code, '', $result);
-    }
-
-    /**
-     * 检测是否符合图片文件上传条件
-     * @param \Illuminate\Http\UploadedFile $file
-     * @return bool | integer
-     */
-    public function checkImgFile($file)
-    {
-        //获取文件后缀名
-        $originFilename = $file->getClientOriginalName();
-        $fileExt = FileService::getFileExt($originFilename);
-        if (!in_array($fileExt, File::$typeMap[1])) {
-            return ResponseResult::FAIL_NOT_ALLOWED_UPLOAD_IMG_TYPE;
-        }
-        if ($file->getSize() > File::$sizeMap[1]) {
-            return ResponseResult::FAIL_EXCEED_SIZE_UPLOAD;
-        }
-        return true;
-    }
-
-    public function saveDoc($uploadFileObj)
-    {
-
-    }
-
-    public function saveVoice($uploadFileObj)
-    {
-
-    }
-
-    public function saveVideo($uploadFileObj)
-    {
-
     }
 
     /**
@@ -191,11 +190,10 @@ class FileController extends Controller
         if (!isset(File::$pathMap[$fileType])) {
             return ResponseResult::getResponse(ResponseResult::FAIL_PARAM_ILLEGAL);
         }
-        $path = File::$pathMap[$fileType];
-        $filename = $path . '/' . $file;
+        $filename = $file;
         $delRes = Storage::delete($filename);
         $code = $delRes === true ? ResponseResult::SUCCESS_COM : ResponseResult::FAIL_SERVICE_DEL;
-        return ResponseResult::getResponse($code, "删除文件成功");
+        return ResponseResult::getResponse($code);
     }
 
     /**
