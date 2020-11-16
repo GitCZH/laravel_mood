@@ -19,6 +19,7 @@ class FileController extends Controller
     private $fileService = null;
     private $fileCache = null;
 
+
     /**
      * FileController constructor.
      * @param FileService $fileService
@@ -71,7 +72,7 @@ class FileController extends Controller
         $totalSize = array_sum(array_column($fileUrl, 'size'));
         $file->setFileUrl($src);
         $file->setFileSize($totalSize);
-        $addRes = $file->add();
+        $addRes = $this->fileService->saveFileItem($file);
         //添加图片
         if ($addRes instanceof \App\Model\File) {
             return ResponseResult::getResponse(ResponseResult::SUCCESS_COM);

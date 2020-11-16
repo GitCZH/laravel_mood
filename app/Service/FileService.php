@@ -23,10 +23,9 @@ class FileService
      */
     public function saveFileItem(File $file)
     {
-        $fileModel = new \App\Model\File();
         //保存的文件字段
         $data = $file->getDbArray();
-        return $fileModel->addFile($data);
+        return \App\Model\File::firstOrCreate($data);
     }
 
     /**

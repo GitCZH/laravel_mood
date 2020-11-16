@@ -36,6 +36,28 @@
                 <p>Copyright@CZH</p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item>
+                        <span>浏览量PV</span>
+                    </el-breadcrumb-item>
+                    <el-breadcrumb-item>
+                        <span>999</span>
+                    </el-breadcrumb-item>
+                </el-breadcrumb>
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item>
+                        <span>浏览量UV</span>
+                    </el-breadcrumb-item>
+                    <el-breadcrumb-item>
+                        <span>888</span>
+                    </el-breadcrumb-item>
+                </el-breadcrumb>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
     </div>
 </div>
 <script src="/js/app.js"></script>

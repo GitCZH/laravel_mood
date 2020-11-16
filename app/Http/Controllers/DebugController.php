@@ -12,7 +12,11 @@ class DebugController
 {
     public function debugRequest(Request $request)
     {
-        dump($request);
         dump($request->getClientIps());
+        dump($request->getUri());
+        dump($request->getQueryString());
+        dump($request->getRequestUri());
+        dump(parse_url($request->getRequestUri()));
+        dump($request);
     }
 }

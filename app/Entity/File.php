@@ -7,7 +7,7 @@
  * Time: 下午 02:51
  */
 namespace App\Entity;
-class File
+class File implements OrmEntity
 {
     //上传路径字典
     public static $pathMap = [

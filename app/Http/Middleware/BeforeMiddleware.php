@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Service\Visit\IpVisitService;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,8 @@ class BeforeMiddleware
             ];
             $request->session()->put($sessionUser);
         }
+        //登录用户记录访问路径
+        IpVisitService::recordVisit($request);
         return $next($request);
     }
 }
