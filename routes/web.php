@@ -18,7 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+//调试方法
+Route::prefix("/debug")->group(function (){
+   Route::get("/request", "DebugController@debugRequest");
+});
 Route::prefix("algorithm_sort")->group(function (){
    Route::get("/bubble", "Admin\AlgorithmSortController@bubble");
    Route::get("/select", "Admin\AlgorithmSortController@select");
@@ -33,7 +36,6 @@ Route::prefix("algorithm_sort")->group(function (){
 Route::prefix("/admin")->middleware("mood_admin")->group(function (){
     Route::get("/sendMsg", "Admin\MsgController@sendRegMsg");
 });
-
 //前端心情驿站应用管理相关路由
 Route::prefix("/mood/short")->middleware("mood_index")->group(function (){
     //发布心情短文路由

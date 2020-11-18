@@ -7648,7 +7648,7 @@ Vue.component('essay_index_prop', __webpack_require__(222));
 Vue.component('essay_stat', __webpack_require__(227));
 Vue.component('upload_img', __webpack_require__(232));
 Vue.component('file_index', __webpack_require__(237));
-
+//组件prop测试
 var app = new Vue({
   el: '#app'
 });
@@ -107096,6 +107096,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "menu.vue",
@@ -107184,23 +107188,27 @@ var render = function() {
       on: { select: _vm.handleSelect }
     },
     [
-      _c("el-menu-item", { attrs: { index: "1" } }, [_vm._v("Mood")]),
+      _c("el-menu-item", { attrs: { index: "1" } }, [
+        _c("a", { attrs: { href: "/home" } }, [_vm._v("Mood")])
+      ]),
       _vm._v(" "),
       _c("el-menu-item", { attrs: { index: "2" } }, [
-        _c("img", {
-          attrs: { width: "25", height: "25", src: _vm.navImg, alt: "" }
-        })
+        _c("a", { attrs: { href: "/home" } }, [
+          _c("img", {
+            attrs: { width: "25", height: "25", src: _vm.navImg, alt: "" }
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("el-menu-item", { attrs: { index: "3" } }, [
-        _c("a", { attrs: { href: "/mood/short/index" } }, [_vm._v("心情驿站")])
+        _c("a", { attrs: { href: "/mood/short/index" } }, [_vm._v("主场")])
       ]),
       _vm._v(" "),
       _c(
         "el-submenu",
         { attrs: { index: "4" } },
         [
-          _c("template", { slot: "title" }, [_vm._v("杂货铺")]),
+          _c("template", { slot: "title" }, [_vm._v("口袋")]),
           _vm._v(" "),
           _c(
             "a",
@@ -107741,7 +107749,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: "publish_essay.vue",
     data: function data() {
         return {
-            essayContent: "分享点什么吧~"
+            essayContent: "今日xxx，心情xxx"
         };
     },
 
@@ -107779,9 +107787,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "panel panel-success" }, [
-      _c("div", { staticClass: "panel-heading" }, [
-        _vm._v("聊聊发生什么了吧~")
-      ]),
+      _c("div", { staticClass: "panel-heading" }, [_vm._v("我的主场")]),
       _vm._v(" "),
       _c("div", { staticClass: "panel-body" }, [
         _c("textarea", {
@@ -107913,7 +107919,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -107926,6 +107932,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
 //
 //
 //
@@ -108341,315 +108348,277 @@ var render = function() {
         { staticClass: "list-group" },
         [
           _vm._l(_vm.essay_items, function(item, eIndex) {
-            return _c(
-              "div",
-              { staticClass: "list-group-item" },
-              [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-2" }, [
-                    _vm.essay_user_info[item.uid]
-                      ? _c("p", { staticClass: "user_nickname text-danger" }, [
-                          _c("span", { staticClass: "label label-danger" }, [
-                            _vm._v(_vm._s(eIndex + 1))
-                          ]),
-                          _vm._v(" "),
-                          _c("b", [
-                            _vm._v(_vm._s(_vm.essay_user_info[item.uid].name))
-                          ])
+            return _c("div", { staticClass: "list-group-item" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-2" }, [
+                  _vm.essay_user_info[item.uid]
+                    ? _c("p", { staticClass: "user_nickname text-danger" }, [
+                        _c("span", { staticClass: "label label-danger" }, [
+                          _vm._v(_vm._s(eIndex + 1))
+                        ]),
+                        _vm._v(" "),
+                        _c("b", [
+                          _vm._v(_vm._s(_vm.essay_user_info[item.uid].name))
                         ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm._m(0, true)
-                  ]),
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
+                  _vm._m(0, true)
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "col-md-8",
+                    staticStyle: { "border-right": "1px solid #ffaabb" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "essay_content",
+                        staticStyle: { "min-height": "70px" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(item.content) +
+                            "\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "essay_time" }, [
+                      _c("span", [_vm._v("发布时间：")]),
+                      _vm._v(_vm._s(item.ctime) + "\n                        ")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-2" }, [
                   _c(
                     "div",
                     {
-                      staticClass: "col-md-8",
-                      staticStyle: { "border-right": "1px solid #ffaabb" }
+                      staticClass: "essay_opt_btn",
+                      staticStyle: { margin: "10px 5px" }
                     },
                     [
                       _c(
-                        "div",
-                        {
-                          staticClass: "essay_content",
-                          staticStyle: { "min-height": "70px" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(item.content) +
-                              "\n                        "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "essay_time" }, [
-                        _c("span", [_vm._v("发布时间：")]),
-                        _vm._v(
-                          _vm._s(item.ctime) + "\n                        "
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-2" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "essay_opt_btn",
-                        staticStyle: { margin: "10px 5px" }
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-xs",
-                            attrs: {
-                              "aria-label": "Center Align",
-                              "data-click": 0,
-                              "data-id": item.id
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.clickCmt($event)
-                              }
-                            }
-                          },
-                          [
-                            _c("span", {
-                              staticClass: "glyphicon glyphicon-comment"
-                            }),
-                            _vm._v(
-                              "\n                                评论\n                            "
-                            )
-                          ]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "essay_opt_btn",
-                        staticStyle: { margin: "10px 5px" }
-                      },
-                      [
-                        _vm.essay_likes[item.id]
-                          ? _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-xs btn-danger",
-                                attrs: {
-                                  "aria-label": "Center Align",
-                                  "data-uid": item.uid,
-                                  "data-id": item.id
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.addClick($event)
-                                  }
-                                }
-                              },
-                              [
-                                _c("span", {
-                                  staticClass: "glyphicon glyphicon-heart"
-                                }),
-                                _vm._v(
-                                  "\n                                点赞\n                            "
-                                )
-                              ]
-                            )
-                          : _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-xs",
-                                attrs: {
-                                  "aria-label": "Center Align",
-                                  "data-uid": item.uid,
-                                  "data-id": item.id
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.addClick($event)
-                                  }
-                                }
-                              },
-                              [
-                                _c("span", {
-                                  staticClass: "glyphicon glyphicon-heart"
-                                }),
-                                _vm._v(
-                                  "\n                                点赞\n                            "
-                                )
-                              ]
-                            )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _vm._m(1, true)
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.cmt_items, function(cmtItem, cmtIndex) {
-                  return _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "list-group" }, [
-                      cmtIndex == item.id
-                        ? _c(
-                            "div",
-                            { staticClass: "list-group-item" },
-                            [
-                              _vm._l(cmtItem, function(eachCmt) {
-                                return _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: {
-                                      "border-bottom": "1px solid #ffaabb"
-                                    }
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-md-2" }, [
-                                      _vm.essay_user_info[eachCmt.cmt_uid]
-                                        ? _c(
-                                            "b",
-                                            { staticClass: "text-info" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.essay_user_info[
-                                                    eachCmt.cmt_uid
-                                                  ].name
-                                                )
-                                              )
-                                            ]
-                                          )
-                                        : _c(
-                                            "b",
-                                            { staticClass: "text-info" },
-                                            [_vm._v("佚名")]
-                                          ),
-                                      _vm._v(
-                                        "\n                                    评论\n                                    "
-                                      ),
-                                      _vm.essay_user_info[eachCmt.pub_uid]
-                                        ? _c(
-                                            "b",
-                                            { staticClass: "text-warning" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.essay_user_info[
-                                                    eachCmt.pub_uid
-                                                  ].name
-                                                )
-                                              )
-                                            ]
-                                          )
-                                        : _c(
-                                            "b",
-                                            { staticClass: "text-warning" },
-                                            [_vm._v("佚名")]
-                                          )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-md-8" }, [
-                                      _c(
-                                        "div",
-                                        { staticClass: "essay_content" },
-                                        [
-                                          _vm._v(
-                                            "\n                                        " +
-                                              _vm._s(eachCmt.cmt_content) +
-                                              "\n                                    "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("br"),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "essay_time" }, [
-                                        _c("span", [_vm._v("评论时间：")]),
-                                        _vm._v(
-                                          _vm._s(eachCmt.ctime) +
-                                            "\n                                    "
-                                        )
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", {
-                                      staticClass: "col-md-2",
-                                      attrs: { "data-last-cmt-id": eachCmt.id }
-                                    })
-                                  ]
-                                )
-                              }),
-                              _vm._v(" "),
-                              _vm._m(2, true)
-                            ],
-                            2
-                          )
-                        : _vm._e()
-                    ])
-                  ])
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "row hide", attrs: { id: item.id } }, [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.cmt_content,
-                            expression: "cmt_content"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          name: "cmt_content",
-                          cols: "30",
-                          rows: "3",
-                          placeholder: "评论点啥吧~"
-                        },
-                        domProps: { value: _vm.cmt_content },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.cmt_content = $event.target.value
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticStyle: { "margin-top": "5px" } }, [
-                      _c(
                         "button",
                         {
-                          staticClass: "btn btn-warning",
+                          staticClass: "btn btn-xs",
                           attrs: {
-                            "data-pub-uid": item.uid,
+                            "aria-label": "Center Align",
+                            "data-click": 0,
                             "data-id": item.id
                           },
                           on: {
                             click: function($event) {
-                              return _vm.publishCmt($event)
+                              return _vm.clickCmt($event)
                             }
                           }
                         },
-                        [_vm._v("发布")]
+                        [
+                          _c("span", {
+                            staticClass: "glyphicon glyphicon-comment"
+                          }),
+                          _vm._v(
+                            "\n                                评论\n                            "
+                          )
+                        ]
                       )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "essay_opt_btn",
+                      staticStyle: { margin: "10px 5px" }
+                    },
+                    [
+                      _vm.essay_likes[item.id]
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-xs btn-danger",
+                              attrs: {
+                                "aria-label": "Center Align",
+                                "data-uid": item.uid,
+                                "data-id": item.id
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.addClick($event)
+                                }
+                              }
+                            },
+                            [
+                              _c("span", {
+                                staticClass: "glyphicon glyphicon-heart"
+                              }),
+                              _vm._v(
+                                "\n                                点赞\n                            "
+                              )
+                            ]
+                          )
+                        : _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-xs",
+                              attrs: {
+                                "aria-label": "Center Align",
+                                "data-uid": item.uid,
+                                "data-id": item.id
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.addClick($event)
+                                }
+                              }
+                            },
+                            [
+                              _c("span", {
+                                staticClass: "glyphicon glyphicon-heart"
+                              }),
+                              _vm._v(
+                                "\n                                点赞\n                            "
+                              )
+                            ]
+                          )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(1, true)
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "list-group" },
+                  _vm._l(_vm.cmt_items[item.id], function(cmtItem) {
+                    return _c("div", { staticClass: "list-group-item" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "row",
+                          staticStyle: { "border-bottom": "1px solid #ffaabb" }
+                        },
+                        [
+                          _c("div", { staticClass: "col-md-2" }, [
+                            _vm.essay_user_info[cmtItem.cmt_uid]
+                              ? _c("b", { staticClass: "text-info" }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.essay_user_info[cmtItem.cmt_uid].name
+                                    )
+                                  )
+                                ])
+                              : _c("b", { staticClass: "text-info" }, [
+                                  _vm._v("佚名")
+                                ]),
+                            _vm._v(
+                              "\n                                    评论\n                                    "
+                            ),
+                            _vm.essay_user_info[cmtItem.pub_uid]
+                              ? _c("b", { staticClass: "text-warning" }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.essay_user_info[cmtItem.pub_uid].name
+                                    )
+                                  )
+                                ])
+                              : _c("b", { staticClass: "text-warning" }, [
+                                  _vm._v("佚名")
+                                ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-8" }, [
+                            _c("div", { staticClass: "essay_content" }, [
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(cmtItem.cmt_content) +
+                                  "\n                                    "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "essay_time" }, [
+                              _c("span", [_vm._v("评论时间：")]),
+                              _vm._v(
+                                _vm._s(cmtItem.ctime) +
+                                  "\n                                    "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", {
+                            staticClass: "col-md-2",
+                            attrs: { "data-last-cmt-id": cmtItem.id }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(2, true)
                     ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row hide", attrs: { id: item.id } }, [
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cmt_content,
+                          expression: "cmt_content"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        name: "cmt_content",
+                        cols: "30",
+                        rows: "3",
+                        placeholder: "评论点啥吧~"
+                      },
+                      domProps: { value: _vm.cmt_content },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.cmt_content = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticStyle: { "margin-top": "5px" } }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-warning",
+                        attrs: { "data-pub-uid": item.uid, "data-id": item.id },
+                        on: {
+                          click: function($event) {
+                            return _vm.publishCmt($event)
+                          }
+                        }
+                      },
+                      [_vm._v("发布")]
+                    )
                   ])
                 ])
-              ],
-              2
-            )
+              ])
+            ])
           }),
           _vm._v(" "),
           _c("input", {
@@ -108685,13 +108654,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "user_avatar" }, [
       _c("a", { staticClass: "thumbnail", attrs: { href: "#" } }, [
-        _c("img", {
-          attrs: {
-            src:
-              "/storage/imgs/upload/foRLrtap4vBlXOe0HlHaJpqz4zdZjUwYupc3OFwE.jpeg",
-            alt: "头像"
-          }
-        })
+        _c("img", { attrs: { src: "/imgs/short/bg_word.png", alt: "头像" } })
       ])
     ])
   },
@@ -109176,7 +109139,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -109276,6 +109239,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "upload_img_temp.vue",
@@ -109283,20 +109248,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             activeName: {},
             fileList: [],
+            coverFile: [],
             postData: {},
             uploadData: {
                 fileUrl: ""
             },
             uploadForm: {
+                //上传的文件类型
                 fileType: 0,
-                fileListInfo: []
+                //上传成功的文件列表
+                fileListInfo: [],
+                //上传成功的封面地址
+                cover_url: ""
             },
-            removeFormData: {},
+            removeFormData: {
+                //删除的文件名
+                filename: "",
+                //删除的文件类型
+                fileType: 0
+            },
             rules: {
                 title: [{ required: true, message: '请输入文件名称', trigger: 'blur' }, { min: 1, max: 15, message: '长度在 1 到 15 个字符', trigger: 'blur' }],
                 desc: [{ required: true, message: '请文件描述', trigger: 'change' }],
                 type: [{ required: true, message: '请选择文件类型', trigger: 'change' }]
-            }
+            },
+            //保存上传成功的文件数据
+            storeFileMap: []
         };
     },
 
@@ -109329,6 +109306,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         handleRemove: function handleRemove(file, fileList) {
+            console.log(file);
+            //删除服务器文件
             if (!this.removeFile(file)) {
                 return false;
             }
@@ -109354,6 +109333,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.fileList.pop();
             } else {
                 this.uploadForm.cover_url = response.result.src;
+                //保存上传后的文件与列表文件对应关系
+                this.storeUploadFileInfo(file, response.result.newName);
                 this.$message({
                     message: '封面文件上传成功',
                     type: 'success'
@@ -109365,6 +109346,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         uploadSuccessFile: function uploadSuccessFile(response, file, fileList) {
             if (response.status_code == 0) {
                 this.uploadForm.fileListInfo.push(response.result);
+                //保存上传后的文件与列表文件对应关系
+                this.storeUploadFileInfo(file, response.result.newName);
                 this.$message({
                     message: '文件上传成功',
                     type: 'success'
@@ -109378,7 +109361,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         removeFile: function removeFile(file) {
             var removeFlag = true;
             var that = this;
-            this.removeFormData.filename = file.name;
+            //获取当前文件与服务器新文件对应关系
+            var delFilename = "";
+            this.storeFileMap.forEach(function (val, index) {
+                if (file.uid == val.uid) {
+                    delFilename = val.newName;
+                    return false;
+                }
+            });
+            var delIndex = -1;
+            this.uploadForm.fileListInfo.forEach(function (val, index) {
+                if (val.newName == delFilename) {
+                    delIndex = index;
+                    return false;
+                }
+            });
+            console.log(delIndex);
+            if (delIndex >= 0) {
+                //删除当前元素
+                this.uploadForm.fileListInfo.splice(delIndex, 1);
+            }
+            this.removeFormData.filename = delFilename;
             $.ajax({
                 url: "/mood/file/removeFile",
                 data: this.removeFormData,
@@ -109394,6 +109397,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
             return removeFlag;
+        },
+        storeUploadFileInfo: function storeUploadFileInfo(file, newName) {
+            //file.uid与新文件名对应
+            var fileObj = {
+                uid: file.uid,
+                newName: newName
+            };
+            this.storeFileMap.push(fileObj);
         },
         getCsrfField: function getCsrfField() {
             var that = this;
@@ -109449,6 +109460,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //清空文件列表
             if (confirm("是否清空文件列表？" + msg)) {
                 this.fileList = [];
+                //清楚上传文件列表
+                this.uploadForm.fileListInfo = [];
+                this.uploadForm.cover_url = "";
             }
         }
     },
@@ -109599,11 +109613,13 @@ var render = function() {
                   staticClass: "upload-demo",
                   attrs: {
                     action: "/mood/file/saveFile",
-                    "before-remove": _vm.beforeRemove,
                     multiple: "",
                     limit: 3,
                     data: _vm.postData,
                     "on-exceed": _vm.handleExceed,
+                    "on-success": _vm.uploadSuccessFile,
+                    "before-remove": _vm.beforeRemove,
+                    "on-remove": _vm.handleRemove,
                     "file-list": _vm.fileList
                   }
                 },
@@ -109640,11 +109656,12 @@ var render = function() {
                   staticClass: "upload-demo",
                   attrs: {
                     action: "/mood/file/saveFile",
-                    "before-remove": _vm.beforeRemove,
                     multiple: "",
                     limit: 3,
                     data: _vm.postData,
                     "on-exceed": _vm.handleExceed,
+                    "before-remove": _vm.beforeRemove,
+                    "on-remove": _vm.handleRemove,
                     "file-list": _vm.fileList
                   }
                 },
@@ -109685,11 +109702,12 @@ var render = function() {
                   staticClass: "upload-demo",
                   attrs: {
                     action: "/mood/file/saveFile",
-                    "before-remove": _vm.beforeRemove,
                     multiple: "",
                     limit: 3,
                     data: _vm.postData,
                     "on-exceed": _vm.handleExceed,
+                    "before-remove": _vm.beforeRemove,
+                    "on-remove": _vm.handleRemove,
                     "file-list": _vm.fileList
                   }
                 },

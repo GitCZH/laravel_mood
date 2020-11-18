@@ -7,7 +7,7 @@
  * Time: 下午 02:51
  */
 namespace App\Entity;
-class File
+class File implements OrmEntity
 {
     //上传路径字典
     public static $pathMap = [
@@ -25,22 +25,6 @@ class File
         4 => '/storage/videos/upload',
     ];
 
-    //上传类型限制字典
-    public static $typeMap = [
-        1 => ['jpeg', 'jpg', 'png', 'gif',],
-        2 => ['doc','xlxs','csv','ppt','txt','md'],
-        3 => ['mp3', 'wav', 'wave', 'wma', 'flac', 'ape'],
-        4 => ['mpeg', 'avi', 'mov', 'asf', 'nAvi'],
-    ];
-
-    //上传文件大小限制字典
-    public static $sizeMap = [
-        1 => 5 * 1024 * 1024,
-        2 => 10 * 1024 * 1024,
-        3 => 50 * 1024 * 1024,
-        4 => 200 * 1024 * 1024,
-    ];
-
     private $id = 0;
     private $uid = 0;
     private $title = "";
@@ -49,7 +33,6 @@ class File
     private $fileUrl = "";
     private $fileType = "";
     private $fileSize = 0;
-    private $mineType = "";
     private $identifyId = 0;
     private $createdAt = "";
     private $updatedAt = "";
@@ -190,22 +173,6 @@ class File
     }
 
     /**
-     * @return string
-     */
-    public function getMineType()
-    {
-        return $this->mineType;
-    }
-
-    /**
-     * @param string $mineType
-     */
-    public function setMineType($mineType)
-    {
-        $this->mineType = $mineType;
-    }
-
-    /**
      * @return int
      */
     public function getIdentifyId()
@@ -277,7 +244,6 @@ class File
             'file_url' => $this->getFileUrl(),
             'file_type' => $this->getFileType(),
             'file_size' => $this->getFileSize(),
-            'minetype' => $this->getMineType(),
             'unique_id' => $this->getIdentifyId(),
         ];
     }

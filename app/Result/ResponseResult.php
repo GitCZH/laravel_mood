@@ -27,6 +27,7 @@ class ResponseResult
     const FAIL_ESSAY_INVALID = -1101;
     const FAIL_DATA_EXISTS = -1201;
     //逻辑错误
+    const FAIL_UNEXPECTED_ERR = -1300;
     //服务错误
     const FAIL_SERVICE_ADD = -2001;
     const FAIL_SERVICE_DEL = -2002;
@@ -46,7 +47,57 @@ class ResponseResult
         self::FAIL_DATA_EXISTS => "操作重复",
         self::FAIL_NOT_ALLOWED_UPLOAD_IMG_TYPE => '上传的图片类型不支持',
         self::FAIL_EXCEED_SIZE_UPLOAD => '上传的文件过大',
+        self::FAIL_UNEXPECTED_ERR => "未知错误",
     ];
+
+    /**
+     * @return int
+     */
+    public function getErrCode()
+    {
+        return $this->_errCode;
+    }
+
+    /**
+     * @param int $errCode
+     */
+    public function setErrCode($errCode)
+    {
+        $this->_errCode = $errCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getErrMsg()
+    {
+        return $this->_errMsg;
+    }
+
+    /**
+     * @param string $errMsg
+     */
+    public function setErrMsg($errMsg)
+    {
+        $this->_errMsg = $errMsg;
+    }
+
+    /**
+     * @return array
+     */
+    public function getResult()
+    {
+        return $this->_result;
+    }
+
+    /**
+     * @param array $result
+     */
+    public function setResult($result)
+    {
+        $this->_result = $result;
+    }
+
     /**
      * 成功响应结果
      * @param int $errCode

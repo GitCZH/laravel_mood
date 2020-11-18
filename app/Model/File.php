@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     protected $table = "upload_file";
+    //使模型支持批量赋值 一般模型数据是单属性逐个赋值
     protected $fillable = [
         'uid', 'title', 'desc', 'cover', 'file_url', 'file_type', 'file_size', 'minetype', 'unique_id'
     ];

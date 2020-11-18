@@ -29,7 +29,7 @@ Vue.component('essay_index_prop', require('./components/index/short/essay_index_
 Vue.component('essay_stat', require('./components/index/short/essay_stat'));
 Vue.component('upload_img', require('./components/index/file/upload_img_temp'));
 Vue.component('file_index', require('./components/index/file/file_index'));
-
+//组件prop测试
 const app = new Vue({
     el: '#app',
 });

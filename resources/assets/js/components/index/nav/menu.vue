@@ -1,14 +1,18 @@
 <template>
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="1">Mood</el-menu-item>
+        <el-menu-item index="1">
+            <a href="/home">Mood</a>
+        </el-menu-item>
         <el-menu-item index="2">
-            <img width="25" height="25" :src="navImg" alt="">
+            <a href="/home">
+                <img width="25" height="25" :src="navImg" alt="">
+            </a>
         </el-menu-item>
         <el-menu-item index="3">
-            <a href="/mood/short/index">心情驿站</a>
+            <a href="/mood/short/index">主场</a>
         </el-menu-item>
         <el-submenu index="4">
-            <template slot="title">杂货铺</template>
+            <template slot="title">口袋</template>
             <a href="">
                 <el-menu-item index="4-1">B</el-menu-item>
             </a>

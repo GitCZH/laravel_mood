@@ -13,7 +13,7 @@
                             <div class="user_avatar">
                                 <a href="#" class="thumbnail">
                                     <!--<img src="/imgs/short/bg_word.png" alt="头像">-->
-                                    <img src="/storage/imgs/upload/foRLrtap4vBlXOe0HlHaJpqz4zdZjUwYupc3OFwE.jpeg" alt="头像">
+                                    <img src="/imgs/short/bg_word.png" alt="头像">
                                 </a>
                             </div>
                         </div>
@@ -52,29 +52,29 @@
                         </div>
                     </div>
                     <!--展示评论-->
-                    <div class="row" v-for="(cmtItem, cmtIndex) in cmt_items">
+                    <div class="row">
                         <!--输出当前内容下的评论-->
                         <div class="list-group">
-                            <div class="list-group-item" v-if="cmtIndex == item.id">
-                                <div class="row" v-for="eachCmt in cmtItem" style="border-bottom: 1px solid #ffaabb;">
+                            <div class="list-group-item"  v-for="cmtItem in cmt_items[item.id]">
+                                <div class="row" style="border-bottom: 1px solid #ffaabb;">
                                     <div class="col-md-2">
-                                        <b class="text-info" v-if="essay_user_info[eachCmt.cmt_uid]">{{essay_user_info[eachCmt.cmt_uid].name}}</b>
+                                        <b class="text-info" v-if="essay_user_info[cmtItem.cmt_uid]">{{essay_user_info[cmtItem.cmt_uid].name}}</b>
                                         <b class="text-info" v-else>佚名</b>
                                         评论
-                                        <b class="text-warning" v-if="essay_user_info[eachCmt.pub_uid]">{{essay_user_info[eachCmt.pub_uid].name}}</b>
+                                        <b class="text-warning" v-if="essay_user_info[cmtItem.pub_uid]">{{essay_user_info[cmtItem.pub_uid].name}}</b>
                                         <b class="text-warning" v-else>佚名</b>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="essay_content">
-                                            {{ eachCmt.cmt_content }}
+                                            {{ cmtItem.cmt_content }}
                                         </div>
                                         <br>
                                         <div class="essay_time">
-                                            <span>评论时间：</span>{{ eachCmt.ctime }}
+                                            <span>评论时间：</span>{{ cmtItem.ctime }}
                                         </div>
                                     </div>
                                     <!--记录分页评论的最后一条评论id-->
-                                    <div class="col-md-2" v-bind:data-last-cmt-id="eachCmt.id"></div>
+                                    <div class="col-md-2" v-bind:data-last-cmt-id="cmtItem.id"></div>
                                 </div>
                                 <div>
                                     <p>
@@ -85,6 +85,7 @@
                         </div>
 
                     </div>
+                    <!--评论、点赞组件-->
                     <div class="row hide" v-bind:id="item.id">
                         <div class="col-md-12">
                             <div>
