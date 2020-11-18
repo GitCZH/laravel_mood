@@ -67,6 +67,8 @@ Route::prefix("/mood/file")->middleware("mood_index")->group(function (){
     Route::post("/saveFile", "FileController@saveFile");
     //浏览
     Route::get("/index", "FileController@index");
+    //获取文件列表
+    Route::get("/getList", "FileController@getFileList");
 });
 //获取表单令牌
 Route::get("/home/getCsrf", "HomeController@getCsrfField");

@@ -1,6 +1,6 @@
 @extends('layouts.boot')
 @section('title')
-    上传图片
+    上传文件
 @endsection
 @section('content')
     <div class="container">

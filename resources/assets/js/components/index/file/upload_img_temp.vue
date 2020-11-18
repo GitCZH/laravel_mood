@@ -243,6 +243,7 @@
                                     });
                                     //清空表单
                                     that.resetForm('uploadForm', "【文件已上传成功】")
+                                    that.uploadForm.fileListInfo = []
                                 } else {
                                     this.$message.error(response.status_msg);
                                 }

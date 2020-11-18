@@ -16,9 +16,35 @@ use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
+        return view("file/index");
+    }
 
+    /**
+     * 获取已上传的文件列表
+     */
+    public function getFileList(Request $request)
+    {
+        //分页获取
+        $minId = $request->get("minId", 0);
+        if ($minId == 0) {
+            $fileList = \App\Model\File::select('unique_id', 'uid', 'title', 'desc', 'cover', 'created_at', 'file_type')
+                ->orderBy("created_at", "desc")
+                ->take(10)
+                ->get();
+        } else {
+            $fileList = \App\Model\File::where('id', "lt", $minId)
+                ->select('unique_id', 'uid', 'title', 'desc', 'cover', 'created_at', 'file_type')
+                ->orderBy("created_at", "desc")
+                ->take(10)
+                ->get();
+        }
+
+        return $fileList;
     }
 
     /**
@@ -131,7 +157,7 @@ class FileController extends Controller
         $saveRes = $uploadFileObj->storeAs(File::$pathMap[1], $uploadFileObj->getClientOriginalName());
         $code = $saveRes === false ? ResponseResult::FAIL_COM : ResponseResult::SUCCESS_COM;
         if ($saveRes) {
-            //记录上传成功的图片信息到redis
+            //记录上传成功的图片信息到redis || 假装使用redis
             $redisHandle = Redis::connection();
             $imgHashKey = Auth::user()->id . "_";
             $redisHandle->set("aa", $saveRes);

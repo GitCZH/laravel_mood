@@ -28,6 +28,8 @@ Vue.component('essay_list', require('./components/index/short/essay_list'));
 Vue.component('essay_index_prop', require('./components/index/short/essay_index_prop'));
 Vue.component('essay_stat', require('./components/index/short/essay_stat'));
 Vue.component('upload_img', require('./components/index/file/upload_img_temp'));
+Vue.component('file_index', require('./components/index/file/file_index'));
+
 const app = new Vue({
     el: '#app',
 });
